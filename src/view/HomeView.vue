@@ -5,19 +5,17 @@
 </template>
 
 <script>
-import lvp from '../api/lvp'
+import { mapGetters } from 'vuex'
+
 import MatchItem from '../components/MatchItem'
 
 export default {
   name: 'Home',
   created () {
-    lvp.getMatches()
-      .then((response) => { this.matches = response.data })
+    this.$store.dispatch('getMatches')
   },
-  data () {
-    return {
-      'matches': []
-    }
+  computed: {
+    ...mapGetters(['matches'])
   },
   components: {
     MatchItem
