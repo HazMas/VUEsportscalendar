@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {UPDATE_MATCHES} from './mutation-types'
+import {UPDATE_MATCHES, FILTER_MATCHES} from './mutation-types'
 import lvp from '../api/lvp'
 
 Vue.use(Vuex)
@@ -18,6 +18,11 @@ export default new Vuex.Store({
   mutations: {
     [UPDATE_MATCHES] (state, {matches}) {
       state.matches = matches
+    },
+    [FILTER_MATCHES] (state) {
+      state.matches = state.matches.filter((match) => {
+        return new Date(match.start_date).getTime() > new Date().getTime()
+      })
     }
   },
   actions: {
