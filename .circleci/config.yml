@@ -6,8 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Python deps in a venv
+        name: Install npm dependencies
         command: npm install
-      - deploy:
+      - run:
+        name: Build Vue for production
+        command: npm run build
+      - run:
         name: Deploy Master to Firebase
         command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
