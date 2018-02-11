@@ -110,6 +110,7 @@
     "access": "restricted"
   },
   "release": {
-    "getLastRelease": "last-release-git"
+    "verifyConditions": ["@semantic-release/github"],
+    "publish": ["@semantic-release/github"]
   }
 }
