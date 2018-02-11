@@ -1,28 +1,20 @@
-build-job:
-  docker:
-    - image: debian:stretch
-  steps:
-    - run:
-      name: Build
-      command: npm run build
+machine:
+  node:
+    version: 8.9.1
 
-deploy-job:
-  docker:
-    - image: debian:stretch
-  steps:
-    - run:
-      name: Deploy Master to Firebase
-      command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+    - bin
 
-workflows:
-  version: 2
+test:
+  override
+    - yarn run build
 
-  build-deploy:
-    jobs:
-      - build-job
-      - deploy-job:
-        requires:
-          - build-job
-          filters:
-            branches:
-              only: master
+deployment:
+  s3up:
+    branch: master
+    commands:
+      - ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
