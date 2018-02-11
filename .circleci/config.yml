@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /tmp
+  working_directory: .
   docker:
     - image: circleci/node:8.9-stretch
 
@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp
+          at: .
       - run:
           name: Install Firebase Tools
           command: npm install firebase-tools
