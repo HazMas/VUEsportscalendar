@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9-stretch
+    steps:
+      - checkout
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Build Vue for production
+          command: npm run build
+  deploy:
+    docker:
+      - image: circleci/node:8.9-stretch
+    steps:
+      - checkout
+      - run:
+          name: Install Firebase Tools
+          command: npm install firebase-tools
+      - run:
+          name: Deploy to firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - deploy:
+          requires:
+              - build
+          filters:
+              branches:
+                  only: master
