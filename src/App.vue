@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <span>VUE-Sports Calendar</span>
+      <h1>VUE-Sports Calendar</h1>
     </header>
     <main>
       <router-view></router-view>
