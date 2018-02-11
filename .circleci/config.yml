@@ -6,6 +6,7 @@ defaults:
 version: 2
 jobs:
   build:
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -19,6 +20,7 @@ jobs:
             paths:
               - dist
   deploy:
+    <<: *defaults
     steps:
       - checkout
       - attach_workspace:
