@@ -44,6 +44,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
+      - run: 
+          name: Get last GitHub tag
+          run: git fetch --tags
       - run:
           name: Publish new release
           command: npm run semantic-release || true
