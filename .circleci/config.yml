@@ -1,5 +1,4 @@
 defaults: &defaults
-  working_directory: .
   docker:
     - image: circleci/node:8.9-stretch
 
@@ -15,16 +14,16 @@ jobs:
       - run:
           name: Build Vue for production
           command: npm run build
-      - persist_to_workspace:
-            root: .
-            paths:
-              - dist
   deploy:
     <<: *defaults
     steps:
       - checkout
-      - attach_workspace:
-          at: .
+      - run:
+        name: Install npm dependencies
+        command: npm install
+      - run:
+        name: Build Vue for production
+        command: npm run build
       - run:
           name: Install Firebase Tools
           command: npm install firebase-tools
