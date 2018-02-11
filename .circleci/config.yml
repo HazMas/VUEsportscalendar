@@ -1,20 +1,13 @@
-machine:
-  node:
-    version: 8.9.1
-
-dependencies:
-  override:
-    - yarn
-  cache_directories:
-    - ~/.cache/yarn
-    - bin
-
-test:
-  override
-    - yarn run build
-
-deployment:
-  s3up:
-    branch: master
-    commands:
-      - ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+    steps:
+      - checkout
+      - run:
+        name: Install Python deps in a venv
+        command: npm install
+      - deploy:
+        name: Deploy Master to Firebase
+        command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
