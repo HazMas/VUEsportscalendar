@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.9-stretch
+    working_directory: /tmp/vue-sportscalendar
     steps:
       - checkout
       - run:
@@ -14,6 +15,7 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:8.9-stretch
+    working_directory: /tmp/vue-sportscalendar
     steps:
       - checkout
       - run:
@@ -24,7 +26,7 @@ jobs:
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 workflows:
   version: 2
-  build:
+  build_and_deploy:
     jobs:
       - build
       - deploy:
