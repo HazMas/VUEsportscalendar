@@ -1,9 +1,11 @@
+defaults:
+  working_directory: /tmp
+  docker:
+    - image: circleci/node:8.9-stretch
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:8.9-stretch
-    working_directory: /tmp/vue-sportscalendar
     steps:
       - checkout
       - run:
@@ -12,12 +14,15 @@ jobs:
       - run:
           name: Build Vue for production
           command: npm run build
+      - persist_to_workspace:
+            root: .
+            paths:
+              - dist
   deploy:
-    docker:
-      - image: circleci/node:8.9-stretch
-    working_directory: /tmp/vue-sportscalendar
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp
       - run:
           name: Install Firebase Tools
           command: npm install firebase-tools
