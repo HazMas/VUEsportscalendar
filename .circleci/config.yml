@@ -9,6 +9,9 @@ jobs:
           name: Install npm dependencies
           command: npm install
       - run:
+          name: Run test
+          command: npm run test
+      - run:
           name: Build Vue for production
           command: npm run build
       - run:
