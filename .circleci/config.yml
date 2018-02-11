@@ -1,18 +1,15 @@
 version: 2
 jobs:
-  build:
+  deploy:
     docker:
       - image: debian:stretch
-    steps:
-      - checkout
-      - run:
-          name: Build
-          command: npm run build
-  deploy:
     filters:
       branches:
         only: master
     steps:
+      - run:
+          name: Build
+          command: npm run build
       - run:
           name: Deploy Master to Firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
