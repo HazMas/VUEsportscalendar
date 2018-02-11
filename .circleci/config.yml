@@ -1,9 +1,10 @@
 build-job:
   docker:
     - image: debian:stretch
-  - run:
-    name: Build
-    command: npm run build
+  steps:
+    - run:
+      name: Build
+      command: npm run build
 
 deploy-job:
   docker:
