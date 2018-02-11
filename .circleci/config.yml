@@ -6,8 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Build
+          command: npm run build
+  deploy:
+    filters:
+      branches:
+        only: master
+    steps:
       - run:
-          name: Print the Current Time
-          command: date
+          name: Deploy Master to Firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
