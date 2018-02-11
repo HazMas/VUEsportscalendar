@@ -1,6 +1,6 @@
 {
   "name": "esportscalendar",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A Vue.js project",
   "author": "Santiago M.A. <santiagomartinagra@gmail.com>",
   "private": true,
@@ -11,7 +11,8 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -88,7 +89,8 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "semantic-release": "^12.4.1"
   },
   "engines": {
     "node": ">= 4.0.0",
@@ -98,5 +100,12 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SantiMA10/VUEsportscalendar.git"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
 }

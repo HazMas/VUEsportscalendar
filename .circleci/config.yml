@@ -39,6 +39,14 @@ jobs:
       - run:
           name: Deploy to firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+  release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Publish new release
+          command: npm run semantic-release || true
 workflows:
   version: 2
   build_and_deploy:
@@ -53,3 +61,6 @@ workflows:
           filters:
               branches:
                   only: master
+      - release:
+          requires:
+              - deploy
