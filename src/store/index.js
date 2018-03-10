@@ -30,7 +30,7 @@ export default new Vuex.Store({
       lvp.getMatches()
         .then((response) => {
           const payload = {
-            'matches': response.data
+            'matches': response
           }
           commit(UPDATE_MATCHES, payload)
         })
