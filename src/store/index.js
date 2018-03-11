@@ -15,6 +15,13 @@ export default new Vuex.Store({
   getters: {
     matches (state) {
       return state.matches
+    },
+    getNumberOfMatchesByDate (state) {
+      return (date) => {
+        return state._matches.filter((match) => {
+          return moment(match.start_date).isSame(date, 'day')
+        }).length
+      }
     }
   },
   mutations: {
