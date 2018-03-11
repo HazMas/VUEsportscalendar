@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE = 'https://pro.lvp.es/api/superliga/'
+const API_BASE = 'https://esportscalendar.herokuapp.com/superliga/'
 
 export default {
   getMatches () {
