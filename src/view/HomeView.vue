@@ -1,8 +1,6 @@
 <template>
   <div>
-    <button v-for="tab in tabs" :key="tab.title" @click="filter(tab.date)" :disabled="$store.getters.getNumberOfMatchesByDate(tab.date) == 0">
-      {{tab.title}} ({{$store.getters.getNumberOfMatchesByDate(tab.date)}})
-    </button>
+    <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
     <match-item v-for="match in matches" :key="match.id" :match="match"></match-item>
   </div>
 </template>
@@ -11,8 +9,8 @@
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
-import { FILTER_MATCHES } from '../store/mutation-types'
 import MatchItem from '../components/MatchItem'
+import CalendarTab from '../components/CalendarTab'
 
 export default {
   name: 'Home',
@@ -34,12 +32,8 @@ export default {
     ...mapGetters(['matches'])
   },
   components: {
-    MatchItem
-  },
-  methods: {
-    filter (date) {
-      this.$store.commit(FILTER_MATCHES, {date})
-    }
+    MatchItem,
+    CalendarTab
   }
 }
 </script>
