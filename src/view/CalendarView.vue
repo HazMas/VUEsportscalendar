@@ -1,6 +1,8 @@
 <template>
   <div>
-    <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
+    <div class="calendar-tabs">
+      <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
+    </div>
     <match-item v-for="match in matches" :key="match.id" :match="match"></match-item>
   </div>
 </template>
@@ -47,6 +49,10 @@ export default {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Oswald', sans-serif;
+  }
+  .calendar-tabs {
+    display: flex;
+    justify-content: space-around;
   }
 </style>
 
