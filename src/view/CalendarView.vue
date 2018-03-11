@@ -13,7 +13,7 @@ import MatchItem from '../components/MatchItem'
 import CalendarTab from '../components/CalendarTab'
 
 export default {
-  name: 'Home',
+  name: 'calendar-view',
   created () {
     this.$store.dispatch('getMatches')
   },
