@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: (resolve) => require(['../view/HomeView'], resolve)
+      component: (resolve) => require(['../view/CalendarView'], resolve)
     }
   ]
 })
