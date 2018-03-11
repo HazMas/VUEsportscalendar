@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="filter">
-      <span v-show="filtered">No</span> jugados
+    <button v-for="tab in tabs" :key="tab.title" @click="filter(tab.date)" >
+      {{tab.title}}
     </button>
     <match-item v-for="match in matches" :key="match.id" :match="match"></match-item>
   </div>
@@ -9,6 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import moment from 'moment'
 
 import { FILTER_MATCHES } from '../store/mutation-types'
 import MatchItem from '../components/MatchItem'
@@ -19,25 +20,25 @@ export default {
     this.$store.dispatch('getMatches')
   },
   computed: {
+    tabs () {
+      const numberOfTabs = 7
+
+      return (new Array(numberOfTabs)).fill(new Date()).map((date, index) => {
+        date = moment(date).add(index, 'day')
+        return {
+          'title': date.format('D MMM.'),
+          date
+        }
+      })
+    },
     ...mapGetters(['matches'])
   },
   components: {
     MatchItem
   },
-  data () {
-    return {
-      filtered: true
-    }
-  },
   methods: {
-    filter () {
-      this.filtered = !this.filtered
-
-      if (!this.filtered) {
-        this.$store.commit(FILTER_MATCHES)
-      } else {
-        this.$store.dispatch('getMatches')
-      }
+    filter (date) {
+      this.$store.commit(FILTER_MATCHES, {date})
     }
   }
 }
