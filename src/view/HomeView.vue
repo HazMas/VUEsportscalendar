@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button v-for="tab in tabs" :key="tab.title" @click="filter(tab.date)" >
-      {{tab.title}}
+    <button v-for="tab in tabs" :key="tab.title" @click="filter(tab.date)" :disabled="$store.getters.getNumberOfMatchesByDate(tab.date) == 0">
+      {{tab.title}} ({{$store.getters.getNumberOfMatchesByDate(tab.date)}})
     </button>
     <match-item v-for="match in matches" :key="match.id" :match="match"></match-item>
   </div>
