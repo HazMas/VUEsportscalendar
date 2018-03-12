@@ -1,13 +1,15 @@
 <template>
   <div class="match-item">
-    <div class>
-       <span>
-        {{match.round}} - {{match.competition}}
+    <div class="match-item__event">
+      <span class="match-item__round">
+        {{match.round}}
       </span>
-       <span>
+      <span class="match-item__competition">
+        {{match.competition}}
+      </span>
+      <span class="match-item__game">
         {{match.game}}
       </span>
-
     </div>
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
@@ -63,6 +65,10 @@ export default {
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-radius: 6px 0 0 6px;
   }
+  .match-item__event {
+  background: #354065;
+  box-shadow: inset -3px 0 0 0 #00A269;
+  }
   .match-item__team-shield {
     display: flex;
     align-items: center;
@@ -70,6 +76,7 @@ export default {
   }
   .match-item__team-shield-img {
     height: 76px;
+     -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
   .match-item__result {
     display: flex;
