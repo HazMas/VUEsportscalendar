@@ -1,13 +1,13 @@
 <template>
   <div class="match-item">
     <div class="match-item__event">
-      <span class="match-item__round">
-        {{match.round}}
+      <span class="match-item__event-round">
+        J {{match.round}}
       </span>
-      <span class="match-item__competition">
+      <span class="match-item__event-competition">
         {{match.competition}}
       </span>
-      <span class="match-item__game">
+      <span class="match-item__event-game">
         {{match.game}}
       </span>
     </div>
@@ -68,6 +68,19 @@ export default {
   .match-item__event {
   background: #354065;
   box-shadow: inset -3px 0 0 0 #00A269;
+  position: relative;
+  }
+  .match-item__event-round {
+    position: absolute;
+    background-color: #00A269;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px;
+    left:calc(100% - 3px);
+    top:-5px;
+    white-space: nowrap;
   }
   .match-item__team-shield {
     display: flex;
