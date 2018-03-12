@@ -1,7 +1,7 @@
 <template>
-  <button @click="filter" :disabled="isDisabled">
-      {{tab.title}} ({{numberOfMatches}})
-  </button>
+    <button class="calendar-tab__day" @click="filter" :disabled="isDisabled">
+        {{tab.title}} ({{numberOfMatches}})
+    </button>
 </template>
 
 <script>
@@ -30,6 +30,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.calendar-tab__day {
+  color: #fff;
+}
 </style>
 
