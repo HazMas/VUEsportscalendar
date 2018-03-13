@@ -1,7 +1,17 @@
 <template>
   <div id="app">
     <header>
-      <h1>VUE-Sports Calendar</h1>
+      <h1>
+        VUE-Sports Calendar
+      </h1>
+        <detect-network>
+          <div slot="online">
+            [online] ✔️
+          </div>
+          <div slot="offline">
+            [Offine] 🚫
+          </div>
+        </detect-network>
     </header>
     <main>
       <router-view></router-view>
@@ -13,8 +23,13 @@
 </template>
 
 <script>
+import detectNetwork from 'v-offline'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    detectNetwork
+  }
 }
 </script>
 
