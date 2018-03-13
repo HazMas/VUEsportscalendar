@@ -14,7 +14,10 @@ export default new Vuex.Store({
   },
   getters: {
     matches (state) {
-      return state.matches.sort((matchA, matchB) => {
+      let matches = [
+        ...state.matches
+      ]
+      return matches.sort((matchA, matchB) => {
         return moment(matchA.start_date).isAfter(moment(matchB.start_date))
       })
     },
