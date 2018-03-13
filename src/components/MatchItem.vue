@@ -1,7 +1,7 @@
 <template>
   <div class="match-item">
-    <div class="match-item__event">
-      <span class="match-item__event-round">
+    <div :class="matchItemEventClasses">
+      <span :class="matchItemEventRoundClasses">
         J{{match.round}}
       </span>
       <span class="match-item__event-competition">
@@ -47,6 +47,22 @@ export default {
     },
     date () {
       return moment(this.match.start_date).format('HH:mm')
+    },
+    matchItemEventClasses () {
+      return {
+        'match-item__event': true,
+        'match-item__event--clash': this.match.game === 'clash',
+        'match-item__event--lol': this.match.game === 'lol',
+        'match-item__event--csgo': this.match.game === 'csgo'
+      }
+    },
+    matchItemEventRoundClasses () {
+      return {
+        'match-item__event-round': true,
+        'match-item__event-round--clash': this.match.game === 'clash',
+        'match-item__event-round--lol': this.match.game === 'lol',
+        'match-item__event-round--csgo': this.match.game === 'csgo'
+      }
     }
   }
 }
@@ -66,18 +82,25 @@ export default {
     border-radius: 6px 0 0 6px;
   }
   .match-item__event {
-  background: #354065;
-  box-shadow: inset -3px 0 0 0 #00A269;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: transparent;
+    background: #354065;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: transparent;
+  }
+  .match-item__event--clash {
+    box-shadow: inset -3px 0 0 0 #FDF9BC;
+  }
+  .match-item__event--lol {
+    box-shadow: inset -3px 0 0 0 #397AF5;
+  }
+  .match-item__event--csgo {
+    box-shadow: inset -3px 0 0 0 #00A269;
   }
   .match-item__event-round {
     position: absolute;
-    background-color: #00A269;
     font-size: 14px;
     font-weight: bold;
     color: #fff;
@@ -86,6 +109,15 @@ export default {
     left:calc(100% - 3px);
     top:-5px;
     white-space: nowrap;
+  }
+  .match-item__event-round--clash {
+    background-color: #FDF9BC;
+  }
+  .match-item__event-round--lol {
+    background-color: #397AF5;
+  }
+  .match-item__event-round--csgo {
+    background-color: #00A269;
   }
   .match-item__event-competition, .match-item__event-game {
     width: 45px;
