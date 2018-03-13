@@ -16,19 +16,20 @@
     <main>
       <router-view></router-view>
     </main>
-    <footer>
-
-    </footer>
+    <web-footer></web-footer>
   </div>
 </template>
 
 <script>
 import detectNetwork from 'v-offline'
 
+import WebFooter from './components/WebFooter'
+
 export default {
   name: 'app',
   components: {
-    detectNetwork
+    detectNetwork,
+    WebFooter
   }
 }
 </script>
