@@ -14,17 +14,17 @@ export default {
         const matches = [
           ...responses[0].data.map((match) => {
             match.game = 'lol'
-            match.competition = 'superliga'
+            match.competition = 'superliga-orange'
             return match
           }),
           ...responses[1].data.map((match) => {
             match.game = 'clash'
-            match.competition = 'superliga'
+            match.competition = 'superliga-orange'
             return match
           }),
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
-            match.competition = 'superliga'
+            match.competition = 'superliga-orange'
             return match
           })
         ]

@@ -2,13 +2,13 @@
   <div class="match-item">
     <div class="match-item__event">
       <span class="match-item__event-round">
-        J {{match.round}}
+        J{{match.round}}
       </span>
       <span class="match-item__event-competition">
-        {{match.competition}}
+        <img :src="'/static/img/leagues/' + match.competition + '.png'" :alt="match.competition">
       </span>
       <span class="match-item__event-game">
-        {{match.game}}
+        <img :src="'/static/img/games/' + match.game + '.png'" :alt="match.game">
       </span>
     </div>
     <div class="match-item__team-shield">
@@ -92,12 +92,6 @@ export default {
     height: 45px;
     background-size: cover;
     display: inline-block;
-  }
-  .match-item__event-competition {
-    background-image: url(../assets/ligas/superliga-orange.png);
-  }
-  .match-item__event-game {
-    background-image: url(../assets/juegos/clash-royale.png);
   }
   .match-item__team-shield {
     display: flex;
