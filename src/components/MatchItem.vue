@@ -69,6 +69,11 @@ export default {
   background: #354065;
   box-shadow: inset -3px 0 0 0 #00A269;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: transparent;
   }
   .match-item__event-round {
     position: absolute;
@@ -81,6 +86,18 @@ export default {
     left:calc(100% - 3px);
     top:-5px;
     white-space: nowrap;
+  }
+  .match-item__event-competition, .match-item__event-game {
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+    display: inline-block;
+  }
+  .match-item__event-competition {
+    background-image: url(../assets/ligas/superliga-orange.png);
+  }
+  .match-item__event-game {
+    background-image: url(../assets/juegos/clash-royale.png);
   }
   .match-item__team-shield {
     display: flex;
