@@ -16,7 +16,7 @@
     <main>
       <router-view></router-view>
     </main>
-    <web-footer></web-footer>
+    <web-footer class="web-footer"></web-footer>
   </div>
 </template>
 
@@ -43,5 +43,15 @@ export default {
     font: inherit;
     cursor: pointer;
     outline: inherit;
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .web-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 </style>
