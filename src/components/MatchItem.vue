@@ -91,13 +91,13 @@ export default {
     color: transparent;
   }
   .match-item__event--clash {
-    box-shadow: inset -3px 0 0 0 #FDF9BC;
+    box-shadow: inset -3px 0 0 0 #5185E0;
   }
   .match-item__event--lol {
-    box-shadow: inset -3px 0 0 0 #397AF5;
+    box-shadow: inset -3px 0 0 0 #05D4BE;
   }
   .match-item__event--csgo {
-    box-shadow: inset -3px 0 0 0 #00A269;
+    box-shadow: inset -3px 0 0 0 #FFAD63;
   }
   .match-item__event-round {
     position: absolute;
@@ -111,19 +111,23 @@ export default {
     white-space: nowrap;
   }
   .match-item__event-round--clash {
-    background-color: #FDF9BC;
+    background-color: #5185E0;
   }
   .match-item__event-round--lol {
-    background-color: #397AF5;
+    background-color: #05D4BE;
   }
   .match-item__event-round--csgo {
-    background-color: #00A269;
+    background-color: #FFAD63;
   }
   .match-item__event-competition, .match-item__event-game {
     width: 45px;
     height: 45px;
     background-size: cover;
     display: inline-block;
+  }
+  .match-item__event-competition img, .match-item__event-game img {
+    height: 45px;
+    width: 45px;
   }
   .match-item__team-shield {
     display: flex;
