@@ -53,7 +53,7 @@ export default {
   .calendar-tabs {
     padding:0 6% 0 6%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .match-item {
     margin:0 0 0 6%;

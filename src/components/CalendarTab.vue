@@ -1,7 +1,10 @@
 <template>
-    <button class="calendar-tab__day" @click="filter" :disabled="isDisabled">
-        {{dayOfWeek}} {{dayOfMonth}} {{month}} ({{numberOfMatches}})
-    </button>
+      <!-- {{month}} -->
+      <button class="calendar-tab__day" @click="filter" :disabled="isDisabled">
+          <span class="calendar-tab__day-week">{{dayOfWeek}}</span>
+          <span class="calendar-tab__day-month">{{dayOfMonth}}</span>
+          <!-- <span class="calendar-tab__day-matches">({{numberOfMatches}})</span> -->
+      </button>
 </template>
 
 <script>
@@ -44,6 +47,22 @@ export default {
 <style lang="scss">
 .calendar-tab__day {
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+button:disabled .calendar-tab__day-month {
+  opacity: 0.3;
+  cursor: auto;
+}
+.calendar-tab__day-week {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  color: #7E8BBC;
+}
+.calendar-tab__day-month {
+  font-size: 1.8em;
 }
 </style>
 
