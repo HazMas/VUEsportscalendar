@@ -3,6 +3,9 @@
     <div class="calendar-tabs">
       <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
     </div>
+    <div v-if="matches.length === 0" class="no-match-text">
+      No hay partidos 😱
+    </div>
     <match-item class="match-item" v-for="match in matches" :key="match.id" :match="match"></match-item>
   </div>
 </template>
@@ -57,6 +60,9 @@ export default {
   }
   .match-item {
     margin:0 0 0 6%;
+  }
+  .no-match-text {
+    text-align: center;
   }
 </style>
 
