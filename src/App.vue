@@ -40,6 +40,7 @@ padding:0 6% 0 6%;
 }
 h1 {
   text-align: center;
+  white-space: nowrap;
 }
 .offline-dino {
   display: flex;
