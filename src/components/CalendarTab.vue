@@ -55,6 +55,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 10px;
+  margin-bottom: -2px;
 }
 button:disabled .calendar-tab__day-month {
   opacity: 0.3;
@@ -69,7 +71,7 @@ button:disabled .calendar-tab__day-month {
   font-size: 1.8em;
 }
 .calendar-tab--active {
-  color: red;
+  border-bottom: 3px solid #FFCF54;
 }
 </style>
 

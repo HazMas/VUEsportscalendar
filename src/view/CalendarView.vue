@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div class="calendar-tabs">
-      <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
+    <div class="calendar-view">
+      <div class="month-item">MAR.</div>
+      <div class="calendar-tabs">
+        <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
+      </div>
     </div>
     <div v-if="matches.length === 0" class="no-match-text">
       No hay partidos 😱
@@ -53,10 +56,21 @@ export default {
     font-family: 'Oswald', sans-serif;
      color: #fff;
   }
-  .calendar-tabs {
+  .calendar-view {
+    display: flex;
     padding:0 6% 0 6%;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+  }
+  .calendar-tabs {
+    width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+  .month-item {
+    font-size: 1.8em;
+    padding-right: 2%;
   }
   .match-item {
     margin:0 0 0 6%;
