@@ -1,14 +1,14 @@
 <template>
       <!-- {{month}} -->
-      <button class="calendar-tab__day" @click="filter" :disabled="isDisabled">
+      <button class="calendar-tab__day" :class="{'calendar-tab--active': isActive}"  @click="filter" :disabled="isDisabled">
           <span class="calendar-tab__day-week">{{dayOfWeek}}</span>
           <span class="calendar-tab__day-month">{{dayOfMonth}}</span>
-          <!-- <span class="calendar-tab__day-matches">({{numberOfMatches}})</span> -->
       </button>
 </template>
 
 <script>
 import moment from 'moment'
+import { mapGetters } from 'vuex'
 
 import { FILTER_MATCHES } from '../store/mutation-types'
 
@@ -30,7 +30,11 @@ export default {
     },
     dayOfMonth () {
       return moment(this.tab.date).locale('es').format('DD')
-    }
+    },
+    isActive () {
+      return moment(this.tab.date).isSame(this.selectedDate, 'day')
+    },
+    ...mapGetters(['selectedDate'])
   },
   methods: {
     filter () {
@@ -63,6 +67,9 @@ button:disabled .calendar-tab__day-month {
 }
 .calendar-tab__day-month {
   font-size: 1.8em;
+}
+.calendar-tab--active {
+  color: red;
 }
 </style>
 
