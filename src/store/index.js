@@ -10,7 +10,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     matches: [],
-    _matches: []
+    _matches: [],
+    selectedDate: new Date()
   },
   getters: {
     matches (state) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
       return matches.sort((matchA, matchB) => {
         return moment(matchA.start_date).isAfter(moment(matchB.start_date))
       })
+    },
+    selectedDate (state) {
+      return state.selectedDate
     },
     getNumberOfMatchesByDate (state) {
       return (date) => {
@@ -35,6 +39,7 @@ export default new Vuex.Store({
       state.matches = matches
     },
     [FILTER_MATCHES] (state, {date}) {
+      state.selectedDate = date
       state.matches = state._matches.filter((match) => {
         return moment(match.start_date).isSame(date, 'day')
       })
