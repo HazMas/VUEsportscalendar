@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "e-sports-info"
+    "default": "e-sports-info",
+    "staging": "esportsapp-88edf"
   }
 }
