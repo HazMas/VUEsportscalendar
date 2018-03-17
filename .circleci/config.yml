@@ -38,7 +38,7 @@ jobs:
           command: npm install firebase-tools
       - run:
           name: Deploy to firebase
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P default
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P default -m circleci
   deploy_to_staging:
     <<: *defaults
     steps:
@@ -49,7 +49,7 @@ jobs:
           command: npm install firebase-tools
       - run:
           name: Deploy to firebase
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P staging
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P staging -m circleci
   release:
     <<: *defaults
     steps:
