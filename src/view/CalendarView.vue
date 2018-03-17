@@ -19,8 +19,8 @@
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
-import MatchItem from '../components/MatchItem'
-import CalendarTab from '../components/CalendarTab'
+import CalendarMatchItem from '@/components/calendar/CalendarMatchItem'
+import CalendarTab from '@/components/calendar/CalendarTab'
 
 export default {
   name: 'calendar-view',
@@ -44,7 +44,7 @@ export default {
     ...mapGetters(['matches', 'selectedDate'])
   },
   components: {
-    MatchItem,
+    CalendarMatchItem,
     CalendarTab
   }
 }

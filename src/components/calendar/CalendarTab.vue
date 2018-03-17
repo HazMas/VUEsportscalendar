@@ -10,7 +10,7 @@
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
-import { FILTER_MATCHES } from '../store/mutation-types'
+import { FILTER_MATCHES } from '@/store/mutation-types'
 
 export default {
   name: 'calendar-tab',
