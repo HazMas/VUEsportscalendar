@@ -17,6 +17,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "moment": "^2.21.0",
+    "v-calendar": "^0.7.5",
     "v-offline": "^1.0.8",
     "vue": "^2.5.2",
     "vue-lazyload": "^1.1.4",
