@@ -1,26 +1,34 @@
 <template>
   <div>
     <div class="calendar-view">
-      <div class="month-item">
+      <div class="month-item" @click="showCalendar = !showCalendar">
         {{month}}
       </div>
       <div class="calendar-tabs">
         <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
       </div>
     </div>
+    <v-date-picker class="calendar-view__date-picker" mode="single" @input="updateDate" :is-inline="true" v-if="showCalendar" :value="selectedDate">
+    </v-date-picker>
     <div v-if="matches.length === 0" class="no-match-text">
       No hay partidos 😱
     </div>
-    <match-item class="match-item" v-for="match in matches" :key="match.id" :match="match"></match-item>
+    <calendar-match-item class="match-item" v-for="match in matches" :key="match.id" :match="match"></calendar-match-item>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import VCalendar from 'v-calendar'
+import 'v-calendar/lib/v-calendar.min.css'
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
+import { FILTER_MATCHES } from '@/store/mutation-types'
 import CalendarMatchItem from '@/components/calendar/CalendarMatchItem'
 import CalendarTab from '@/components/calendar/CalendarTab'
+
+Vue.use(VCalendar)
 
 export default {
   name: 'calendar-view',
@@ -46,6 +54,21 @@ export default {
   components: {
     CalendarMatchItem,
     CalendarTab
+  },
+  methods: {
+    updateDate (date) {
+      const payload = {
+        'date': date
+      }
+
+      this.$store.commit(FILTER_MATCHES, payload)
+      this.showCalendar = false
+    }
+  },
+  data () {
+    return {
+      'showCalendar': false
+    }
   }
 }
 </script>
@@ -81,6 +104,12 @@ export default {
   }
   .no-match-text {
     text-align: center;
+  }
+  .calendar-view__selected-date {
+    text-align: center;
+  }
+  .calendar-view__date-picker {
+    display: block;
   }
 </style>
 
