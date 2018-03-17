@@ -31,8 +31,8 @@ export default {
     tabs () {
       const numberOfTabs = 7
 
-      return (new Array(numberOfTabs)).fill(new Date()).map((date, index) => {
-        date = moment(date).add(index, 'day')
+      return (new Array(numberOfTabs)).fill(this.selectedDate).map((date, index) => {
+        date = moment(date).add(index - 3, 'day')
         return {
           date
         }
