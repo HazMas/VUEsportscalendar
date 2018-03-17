@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="calendar-view">
-      <div class="month-item">MAR.</div>
+      <div class="month-item">
+        {{month}}
+      </div>
       <div class="calendar-tabs">
         <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
       </div>
@@ -32,12 +34,14 @@ export default {
       return (new Array(numberOfTabs)).fill(new Date()).map((date, index) => {
         date = moment(date).add(index, 'day')
         return {
-          'title': date.format('D MMM.'),
           date
         }
       })
     },
-    ...mapGetters(['matches'])
+    month () {
+      return moment(this.selectedDate).locale('es').format('MMMM')
+    },
+    ...mapGetters(['matches', 'selectedDate'])
   },
   components: {
     MatchItem,
