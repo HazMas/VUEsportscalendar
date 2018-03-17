@@ -23,7 +23,7 @@ export default new Vuex.Store({
       })
     },
     selectedDate (state) {
-      return state.selectedDate
+      return moment(state.selectedDate).toDate()
     },
     getNumberOfMatchesByDate (state) {
       return (date) => {
