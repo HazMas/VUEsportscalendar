@@ -7,7 +7,8 @@ export default {
     const promises = [
       axios.get(API_BASE + 'lol/temporada/matches'),
       axios.get(API_BASE + 'clash/temporada/matches'),
-      axios.get(API_BASE + 'csgo/temporada/matches')
+      axios.get(API_BASE + 'csgo/temporada/matches'),
+      axios.get(API_BASE + 'lol/copa/matches')
     ]
     return Promise.all(promises)
       .then((responses) => {
@@ -25,6 +26,11 @@ export default {
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
             match.competition = 'superliga-orange'
+            return match
+          }),
+          ...responses[3].data.map((match) => {
+            match.game = 'lol'
+            match.competition = 'lacopa-elcorteingles'
             return match
           })
         ]
