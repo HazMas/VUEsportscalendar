@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import {UPDATE_MATCHES, FILTER_MATCHES} from './mutation-types'
 import lvp from '../api/lvp'
+import esl from '../api/esl'
 
 Vue.use(Vuex)
 
@@ -47,14 +48,19 @@ export default new Vuex.Store({
   },
   actions: {
     getMatches ({commit}, matches) {
-      lvp.getMatches()
-        .then((response) => {
-          const payload = {
-            'matches': response
-          }
-          commit(UPDATE_MATCHES, payload)
-          commit(FILTER_MATCHES, {'date': new Date()})
-        })
+      Promise.all([
+        lvp.getMatches(),
+        esl.getMatches()
+      ]).then((responses) => {
+        const payload = {
+          'matches': [
+            ...responses[0],
+            ...responses[1]
+          ]
+        }
+        commit(UPDATE_MATCHES, payload)
+        commit(FILTER_MATCHES, {'date': new Date()})
+      })
     }
   },
   strict: process.env.NODE_ENV !== 'production'
