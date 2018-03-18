@@ -130,6 +130,10 @@ const webpackConfig = merge(baseWebpackConfig, {
           handler: 'cacheFirst'
         },
         {
+          urlPattern: /^https:\/\/www\.esl-one\.com\/fileadmin\/user_upload\/prodb/,
+          handler: 'cacheFirst'
+        },
+        {
           urlPattern: /^https:\/\/s3-eu-west-1\.amazonaws\.com\/lvp-ddh/,
           handler: 'cacheFirst'
         }]
