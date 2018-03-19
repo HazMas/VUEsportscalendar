@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import {UPDATE_MATCHES, FILTER_MATCHES, UPDATE_LOADING} from './mutation-types'
 import lvp from '../api/lvp'
+import esl from '../api/esl'
 
 Vue.use(Vuex)
 
@@ -53,17 +54,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getMatches ({commit}, matches) {
-      commit(UPDATE_LOADING, {'loading': true})
-      lvp.getMatches()
-        .then((response) => {
-          const payload = {
-            'matches': response
-          }
-          commit(UPDATE_MATCHES, payload)
-          commit(FILTER_MATCHES, {'date': new Date()})
-          commit(UPDATE_LOADING, {'loading': false})
-        })
+    getMatches ({commit, state}, matches) {
+      Promise.all([
+        lvp.getMatches(),
+        esl.getMatches()
+      ]).then((responses) => {
+        const payload = {
+          'matches': [
+            ...responses[0],
+            ...responses[1]
+          ]
+        }
+        commit(UPDATE_MATCHES, payload)
+        commit(FILTER_MATCHES, {'date': state.selectedDate})
+        commit(UPDATE_LOADING, {'loading': false})
+      })
     }
   },
   strict: process.env.NODE_ENV !== 'production'
