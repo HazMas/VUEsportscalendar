@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=9249&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
+const API_BASE = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
 
 export default {
   getMatches () {
@@ -20,7 +20,7 @@ export default {
         return matches
       })
   },
-  parseMatchesFromMatchDay ({matches, matchday, date_ts}) { // eslint-disable-line camelcase
+  parseMatchesFromMatchDay ({matches, matchday}) { // eslint-disable-line camelcase
     return matches.map(
       (match) => {
         return {
@@ -28,7 +28,7 @@ export default {
           'round': matchday,
           'competition': 'esl-masters',
           'game': 'csgo',
-          'start_date': new Date(date_ts * 1000), // eslint-disable-line camelcase
+          'start_date': new Date(match.playdate * 1000), // eslint-disable-line camelcase
           'result_a': match.result_team1, // eslint-disable-line camelcase
           'result_b': match.result_team2, // eslint-disable-line camelcase
           'team_a': {
@@ -49,9 +49,9 @@ export default {
     }
   },
   parseMatchStatus ({winner, islive}) {
-    if (winner && islive === '0') {
+    if (winner !== '0' && islive === '0') {
       return 'finished'
-    } else if (!winner && islive === '0') {
+    } else if (winner === '0' && islive === '0') {
       return 'scheduled'
     }
   }
