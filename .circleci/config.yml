@@ -38,7 +38,18 @@ jobs:
           command: npm install firebase-tools
       - run:
           name: Deploy to firebase
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P default -m circleci
+  deploy_to_staging:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Install Firebase Tools
+          command: npm install firebase-tools
+      - run:
+          name: Deploy to firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN -P staging -m circleci
   release:
     <<: *defaults
     steps:
@@ -61,6 +72,12 @@ workflows:
           filters:
               branches:
                   only: master
+      - deploy_to_staging:
+          requires:
+              - build
+          filters:
+              branches:
+                  only: dev
       - release:
           requires:
               - deploy

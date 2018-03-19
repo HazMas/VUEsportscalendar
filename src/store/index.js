@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
 
-import {UPDATE_MATCHES, FILTER_MATCHES} from './mutation-types'
+import {UPDATE_MATCHES, FILTER_MATCHES, UPDATE_LOADING} from './mutation-types'
 import lvp from '../api/lvp'
 import esl from '../api/esl'
 
@@ -12,7 +12,8 @@ export default new Vuex.Store({
   state: {
     matches: [],
     _matches: [],
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    loading: false
   },
   getters: {
     matches (state) {
@@ -24,7 +25,10 @@ export default new Vuex.Store({
       })
     },
     selectedDate (state) {
-      return state.selectedDate
+      return moment(state.selectedDate).toDate()
+    },
+    loading (state) {
+      return state.loading
     },
     getNumberOfMatchesByDate (state) {
       return (date) => {
@@ -44,10 +48,14 @@ export default new Vuex.Store({
       state.matches = state._matches.filter((match) => {
         return moment(match.start_date).isSame(date, 'day')
       })
+    },
+    [UPDATE_LOADING] (state, {loading}) {
+      state.loading = loading
     }
   },
   actions: {
     getMatches ({commit}, matches) {
+
       Promise.all([
         lvp.getMatches(),
         esl.getMatches()
@@ -60,7 +68,9 @@ export default new Vuex.Store({
         }
         commit(UPDATE_MATCHES, payload)
         commit(FILTER_MATCHES, {'date': new Date()})
+        commit(UPDATE_LOADING, {'loading': false})
       })
+
     }
   },
   strict: process.env.NODE_ENV !== 'production'

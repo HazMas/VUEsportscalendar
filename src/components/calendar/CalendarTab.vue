@@ -10,7 +10,7 @@
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
-import { FILTER_MATCHES } from '../store/mutation-types'
+import { FILTER_MATCHES } from '@/store/mutation-types'
 
 export default {
   name: 'calendar-tab',
@@ -24,9 +24,6 @@ export default {
     },
     dayOfWeek () {
       return moment(this.tab.date).locale('es').format('ddd')
-    },
-    month () {
-      return moment(this.tab.date).locale('es').format('MMM')
     },
     dayOfMonth () {
       return moment(this.tab.date).locale('es').format('DD')
