@@ -10,9 +10,10 @@
     </div>
     <v-date-picker class="calendar-view__date-picker" mode="single" @input="updateDate" :is-inline="true" v-if="showCalendar" :value="selectedDate">
     </v-date-picker>
-    <div v-if="matches.length === 0" class="no-match-text">
+    <div v-if="areNoMatches" class="no-match-text">
       No hay partidos 😱
     </div>
+    <loader v-if="isLoading" class="no-match-text"></loader>
     <calendar-match-item class="match-item" v-for="match in matches" :key="match.id" :match="match"></calendar-match-item>
   </div>
 </template>
@@ -27,6 +28,7 @@ import moment from 'moment'
 import { FILTER_MATCHES } from '@/store/mutation-types'
 import CalendarMatchItem from '@/components/calendar/CalendarMatchItem'
 import CalendarTab from '@/components/calendar/CalendarTab'
+import Loader from '@/components/Loader'
 
 Vue.use(VCalendar)
 
@@ -49,11 +51,18 @@ export default {
     month () {
       return moment(this.selectedDate).locale('es').format('MMMM')
     },
-    ...mapGetters(['matches', 'selectedDate'])
+    areNoMatches () {
+      return this.matches.length === 0 && !this.isLoading
+    },
+    isLoading () {
+      return this.loading
+    },
+    ...mapGetters(['matches', 'selectedDate', 'loading'])
   },
   components: {
     CalendarMatchItem,
-    CalendarTab
+    CalendarTab,
+    Loader
   },
   methods: {
     updateDate (date) {
