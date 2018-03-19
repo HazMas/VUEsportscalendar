@@ -54,8 +54,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getMatches ({commit}, matches) {
-
+    getMatches ({commit, state}, matches) {
       Promise.all([
         lvp.getMatches(),
         esl.getMatches()
@@ -67,10 +66,9 @@ export default new Vuex.Store({
           ]
         }
         commit(UPDATE_MATCHES, payload)
-        commit(FILTER_MATCHES, {'date': new Date()})
+        commit(FILTER_MATCHES, {'date': state.selectedDate})
         commit(UPDATE_LOADING, {'loading': false})
       })
-
     }
   },
   strict: process.env.NODE_ENV !== 'production'
