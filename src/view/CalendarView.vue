@@ -14,7 +14,7 @@
       No hay partidos 😱
     </div>
     <loader v-if="isLoading" class="no-match-text"></loader>
-    <calendar-match-item class="match-item" v-for="match in matches" :key="match.id" :match="match"></calendar-match-item>
+    <component :is="'calendar-match-null-item'" class="match-item" v-for="match in matches" :key="match.id" :match="match"></component>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ import moment from 'moment'
 
 import { FILTER_MATCHES } from '@/store/mutation-types'
 import CalendarMatchItem from '@/components/calendar/CalendarMatchItem'
+import CalendarMatchNullItem from '@/components/calendar/CalendarMatchNullItem'
 import CalendarTab from '@/components/calendar/CalendarTab'
 import Loader from '@/components/Loader'
 
@@ -61,6 +62,7 @@ export default {
   },
   components: {
     CalendarMatchItem,
+    CalendarMatchNullItem,
     CalendarTab,
     Loader
   },
