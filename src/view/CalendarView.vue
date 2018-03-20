@@ -14,7 +14,7 @@
       No hay partidos 😱
     </div>
     <loader v-if="isLoading" class="no-match-text"></loader>
-    <component :is="'calendar-match-null-item'" class="match-item" v-for="match in matches" :key="match.id" :match="match"></component>
+    <component :is="selectItem(match)" class="match-item" v-for="match in matches" :key="match.id" :match="match"></component>
   </div>
 </template>
 
@@ -74,6 +74,14 @@ export default {
 
       this.$store.commit(FILTER_MATCHES, payload)
       this.showCalendar = false
+    },
+
+    selectItem (match) {
+      if (!match.team_a || !match.team_b) {
+        return 'calendar-match-null-item'
+      } else {
+        return 'calendar-match-item'
+      }
     }
   },
   data () {
