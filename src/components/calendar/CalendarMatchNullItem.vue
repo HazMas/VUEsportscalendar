@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" v-lazy="require('@/assets/shield.jpg')" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" v-lazy="require('@/assets/null-team.png')" :alt="match.team_a.name">
     </div>
     <div class="match-item__result" v-if="isFinished || isPlaying">
       <div class="match-item__result-a">{{match.result_a}}</div>
@@ -24,7 +24,7 @@
       {{date}} h
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" v-lazy="require('@/assets/shield.jpg')" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" v-lazy="require('@/assets/null-team.png')" :alt="match.team_a.name">
     </div>
   </div>
 </template>
