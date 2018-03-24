@@ -56,6 +56,7 @@
 
 <script>
 import lvp from '@/api/lvp'
+import esl from '@/api/esl'
 import Loader from '@/components/Loader'
 import {isScheduled, isFinished, isLive, startTime, startFullDate} from '@/helpers/MatchHelpers'
 
@@ -65,6 +66,12 @@ export default {
   created () {
     if (this.competition === 'superliga-orange') {
       lvp.getMatch(this.game, this.matchId)
+        .then((match) => {
+          this.match = match
+          this.loading = false
+        })
+    } else if (this.competition === 'esl-masters') {
+      esl.getMatch(this.game, this.matchId)
         .then((match) => {
           this.match = match
           this.loading = false
