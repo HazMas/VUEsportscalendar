@@ -17,26 +17,34 @@ export default {
           ...responses[0].data.map((match) => {
             match.game = 'lol'
             match.competition = 'superliga-orange'
+            match.live = [
+              {
+                'platform': 'twitch',
+                'url': 'https://www.twitch.tv/lvpes'
+              }
+            ]
             return match
           }),
           ...responses[1].data.map((match) => {
             match.game = 'clash'
             match.competition = 'superliga-orange'
+            match.live = [
+              {
+                'platform': 'twitch',
+                'url': 'https://www.twitch.tv/lvpes3'
+              }
+            ]
             return match
           }),
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
             match.competition = 'superliga-orange'
-            return match
-          }),
-          ...responses[3].data.map((match) => {
-            match.game = 'lol'
-            match.competition = 'lacopa-elcorteingles'
-            return match
-          }),
-          ...responses[4].data.map((match) => {
-            match.game = 'lol'
-            match.competition = 'lvp-segunda'
+            match.live = [
+              {
+                'platform': 'twitch',
+                'url': 'https://www.twitch.tv/lvpes2'
+              }
+            ]
             return match
           })
         ]
