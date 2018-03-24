@@ -1,5 +1,5 @@
 <template>
-  <div class="match-item">
+  <router-link tag="div" :to="{ name: 'match-view', params: { competition: match.competition, game: match.game, matchId: match.id }}" class="match-item">
     <div :class="matchItemEventClasses">
       <span :class="matchItemEventRoundClasses">
         J{{match.round}}
@@ -17,13 +17,13 @@
     <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
       <div class="match-item__result-a">
         {{match.result_a}}
-    </div>
+      </div>
       <span class="match-item__separator">
         ·
       </span>
       <div class="match-item__result-b">
         {{match.result_b}}
-    </div>
+      </div>
       <span v-if="isLive(match)">
         En juego
       </span>
@@ -34,7 +34,7 @@
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_a.name">
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -84,6 +84,7 @@ export default {
     background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 0%, #323D62 100%);
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-radius: 6px 0 0 6px;
+    cursor: pointer;
   }
   .match-item__event {
     background: #354065;

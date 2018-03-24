@@ -36,6 +36,13 @@ export default new Vuex.Store({
           return moment(match.start_date).isSame(date, 'day')
         }).length
       }
+    },
+    getMatchByCompetitonGameAndId (state) {
+      return (competition, game, matchId) => {
+        return state._matches.find((match) => {
+          return match.competition === competition && match.game === game && match.id === matchId
+        })
+      }
     }
   },
   mutations: {
