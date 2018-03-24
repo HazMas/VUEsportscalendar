@@ -117,7 +117,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'esportscalendar',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css,svg,png}'],
       minify: true,
       stripPrefix: 'dist/',
       runtimeCaching: [
