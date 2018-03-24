@@ -20,6 +20,14 @@ export default {
         return matches
       })
   },
+  getMatch (game, matchId) {
+    return this.getMatches()
+      .then((matches) => {
+        return matches.find((match) => {
+          return match.game === game && match.id === matchId
+        })
+      })
+  },
   parseMatchesFromMatchDay ({matches, matchday}) { // eslint-disable-line camelcase
     return matches.map(
       (match) => {
