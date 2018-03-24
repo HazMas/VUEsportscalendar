@@ -43,7 +43,7 @@ export default {
       return this.match.status === 'finished'
     },
     isPlaying () {
-      return !this.isScheduled && !this.isFinished
+      return (!this.isScheduled && !this.isFinished) || (moment(this.match.start_date).isBefore(moment()) && this.isScheduled)
     },
     date () {
       return moment(this.match.start_date).format('HH:mm')
