@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import moment from 'moment'
 
-import {UPDATE_MATCHES, FILTER_MATCHES} from './mutation-types'
+import {UPDATE_MATCHES, FILTER_MATCHES, UPDATE_LOADING} from './mutation-types'
 import lvp from '../api/lvp'
+import esl from '../api/esl'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ export default new Vuex.Store({
   state: {
     matches: [],
     _matches: [],
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    loading: false
   },
   getters: {
     matches (state) {
@@ -23,7 +25,10 @@ export default new Vuex.Store({
       })
     },
     selectedDate (state) {
-      return state.selectedDate
+      return moment(state.selectedDate).toDate()
+    },
+    loading (state) {
+      return state.loading
     },
     getNumberOfMatchesByDate (state) {
       return (date) => {
@@ -43,18 +48,27 @@ export default new Vuex.Store({
       state.matches = state._matches.filter((match) => {
         return moment(match.start_date).isSame(date, 'day')
       })
+    },
+    [UPDATE_LOADING] (state, {loading}) {
+      state.loading = loading
     }
   },
   actions: {
-    getMatches ({commit}, matches) {
-      lvp.getMatches()
-        .then((response) => {
-          const payload = {
-            'matches': response
-          }
-          commit(UPDATE_MATCHES, payload)
-          commit(FILTER_MATCHES, {'date': new Date()})
-        })
+    getMatches ({commit, state}, matches) {
+      Promise.all([
+        lvp.getMatches(),
+        esl.getMatches()
+      ]).then((responses) => {
+        const payload = {
+          'matches': [
+            ...responses[0],
+            ...responses[1]
+          ]
+        }
+        commit(UPDATE_MATCHES, payload)
+        commit(FILTER_MATCHES, {'date': state.selectedDate})
+        commit(UPDATE_LOADING, {'loading': false})
+      })
     }
   },
   strict: process.env.NODE_ENV !== 'production'
