@@ -5,10 +5,10 @@
     <div v-else>
       <add-to-calendar :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
         <div>
-          <google-calendar id="google-calendar">
+          <google-calendar id="google-calendar" class="match-view__calendar-link">
             <i class="fa fa-google"></i> Add to Google calendar
           </google-calendar>
-          <microsoft-calendar id="microsoft-calendar">
+          <microsoft-calendar id="microsoft-calendar" class="match-view__calendar-link">
             <i class="fa fa-windows"></i> Add to Microsoft live calendar
           </microsoft-calendar>
         </div>
@@ -130,6 +130,12 @@ export default {
 </script>
 
 <style lang="scss">
+
+.match-view__calendar-link {
+  text-decoration: none;
+  color: white;
+  display: block;
+} 
 .match-view__teams {
   display: flex;
   justify-content: center;
