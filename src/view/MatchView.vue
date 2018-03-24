@@ -3,6 +3,16 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
+      <add-to-calendar :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
+        <div>
+          <google-calendar id="google-calendar">
+            <i class="fa fa-google"></i> Add to Google calendar
+          </google-calendar>
+          <microsoft-calendar id="microsoft-calendar">
+            <i class="fa fa-windows"></i> Add to Microsoft live calendar
+          </microsoft-calendar>
+        </div>
+      </add-to-calendar>
       <h1 class="match-view">
         {{match | startFullDate}}
       </h1>
@@ -55,6 +65,9 @@
 </template>
 
 <script>
+import moment from 'moment'
+import AddToCalendar from 'vue-add-to-calendar'
+
 import lvp from '@/api/lvp'
 import esl from '@/api/esl'
 import Loader from '@/components/Loader'
@@ -85,6 +98,12 @@ export default {
     }
   },
   computed: {
+    startDate () {
+      return moment(this.match.start_date).toDate()
+    },
+    endDate () {
+      return moment(this.match.start_date).add(2, 'hours').toDate()
+    },
     matchItemEventRoundClasses () {
       return {
         'match-view__event-round': true,
@@ -104,7 +123,8 @@ export default {
     startFullDate
   },
   components: {
-    Loader
+    Loader,
+    AddToCalendar
   }
 }
 </script>
