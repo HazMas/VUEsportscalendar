@@ -38,6 +38,15 @@ header {
   grid-template-columns: 1fr 3fr 1fr;
   padding:0 6% 0 6%;
 }
+body {
+  background-image: linear-gradient(135deg, #424E75 0%, #282949 45%, #262C4A 100%);
+  margin: 0;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Oswald', sans-serif;
+  color: #fff;
+}
 h1 {
   text-align: center;
   white-space: nowrap;
