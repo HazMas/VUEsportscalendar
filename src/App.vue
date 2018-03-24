@@ -7,7 +7,7 @@
       </h1>
       <detect-network class="offline-dino">
         <div slot="offline">
-          <img src="static/img/icons/dino.svg" alt="Offline dinosaur">
+          <img src="@/assets/img/dino.svg" alt="Offline dinosaur">
         </div>
       </detect-network>
     </header>
@@ -21,7 +21,7 @@
 <script>
 import detectNetwork from 'v-offline'
 
-import WebFooter from './components/WebFooter'
+import WebFooter from '@/components/WebFooter'
 
 export default {
   name: 'app',
@@ -34,9 +34,9 @@ export default {
 
 <style lang="scss">
 header {
-display: grid;
-grid-template-columns: 1fr 3fr 1fr;
-padding:0 6% 0 6%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  padding:0 6% 0 6%;
 }
 h1 {
   text-align: center;
