@@ -14,14 +14,22 @@
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="require('@/assets/img/null-team.png')" :alt="match.team_a.name">
     </div>
-    <div class="match-item__result" v-if="isFinished || isPlaying">
-      <div class="match-item__result-a">{{match.result_a}}</div>
-      <span class="match-item__separator">·</span>
-      <div class="match-item__result-b">{{match.result_b}}</div>
-      <span v-if="isPlaying">En juego</span>
+    <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
+      <div class="match-item__result-a">
+        {{match.result_a}}
+      </div>
+      <span class="match-item__separator">
+        vs
+      </span>
+      <div class="match-item__result-b">
+        {{match.result_b}}
+      </div>
+      <span v-if="isLive(match)">
+        En juego
+      </span>
     </div>
-    <div class="match-item__result" v-if="isScheduled">
-      {{date}} h
+    <div class="match-item__result" v-if="isScheduled(match)">
+      {{match | startTime}} h
     </div>
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="require('@/assets/img/null-team.png')" :alt="match.team_a.name">
@@ -30,24 +38,12 @@
 </template>
 
 <script>
-import moment from 'moment'
+import {isScheduled, isLive, isFinished, startTime} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
   props: ['match'],
   computed: {
-    isScheduled () {
-      return this.match.status === 'scheduled'
-    },
-    isFinished () {
-      return this.match.status === 'finished'
-    },
-    isPlaying () {
-      return !this.isScheduled && !this.isFinished
-    },
-    date () {
-      return moment(this.match.start_date).format('HH:mm')
-    },
     matchItemEventClasses () {
       return {
         'match-item__event': true,
@@ -64,6 +60,14 @@ export default {
         'match-item__event-round--csgo': this.match.game === 'csgo'
       }
     }
+  },
+  methods: {
+    isScheduled,
+    isLive,
+    isFinished
+  },
+  filters: {
+    startTime
   }
 }
 </script>
