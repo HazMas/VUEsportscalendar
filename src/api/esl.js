@@ -45,7 +45,8 @@ export default {
           'team_b': {
             ...this.parseMatchTeamInfo(match.team2)
           },
-          'status': this.parseMatchStatus(match)
+          'status': this.parseMatchStatus(match),
+          'live': this.getLive('csgo')
         }
       })
   },
@@ -61,6 +62,16 @@ export default {
       return 'finished'
     } else if (winner === '0' && islive === '0') {
       return 'scheduled'
+    }
+  },
+  getLive (game) {
+    if (game === 'csgo') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/ESL_csgo_es'
+        }
+      ]
     }
   }
 }
