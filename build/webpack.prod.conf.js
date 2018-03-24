@@ -126,6 +126,14 @@ const webpackConfig = merge(baseWebpackConfig, {
           handler: 'cacheFirst'
         },
         {
+          urlPattern: /^https:\/\/esportscalendar\.herokuapp\.com\//,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /^https:\/\/cdn1\.api\.esl\.tv\/v1\/match/,
+          handler: 'networkFirst'
+        },
+        {
           urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
           handler: 'cacheFirst'
         },
