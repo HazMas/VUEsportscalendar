@@ -39,11 +39,11 @@ export default {
   getLive (game) {
     if (game === 'csgo') {
       return [
-              {
-                'platform': 'twitch',
-                'url': 'https://www.twitch.tv/lvpes2'
-              }
-            ]
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes2'
+        }
+      ]
     } else if (game === 'clash') {
       return [
         {
@@ -59,5 +59,17 @@ export default {
         }
       ]
     }
+  },
+  getMatch (game, matchId) {
+    return axios.get(API_BASE + game + '/temporada/match/' + matchId)
+      .then((response) => {
+        let match = {
+          'game': game,
+          'competition': 'superliga-orange',
+          'live': this.getLive(game),
+          ...response.data
+        }
+        return match
+      })
   }
 }
