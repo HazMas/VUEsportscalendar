@@ -17,38 +17,47 @@ export default {
           ...responses[0].data.map((match) => {
             match.game = 'lol'
             match.competition = 'superliga-orange'
-            match.live = [
-              {
-                'platform': 'twitch',
-                'url': 'https://www.twitch.tv/lvpes'
-              }
-            ]
+            match.live = this.getLive(match.game)
             return match
           }),
           ...responses[1].data.map((match) => {
             match.game = 'clash'
             match.competition = 'superliga-orange'
-            match.live = [
-              {
-                'platform': 'twitch',
-                'url': 'https://www.twitch.tv/lvpes3'
-              }
-            ]
+            match.live = this.getLive(match.game)
             return match
           }),
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
             match.competition = 'superliga-orange'
-            match.live = [
-              {
-                'platform': 'twitch',
-                'url': 'https://www.twitch.tv/lvpes2'
-              }
-            ]
+            match.live = this.getLive(match.game)
             return match
           })
         ]
         return matches
       })
+  },
+  getLive (game) {
+    if (game === 'csgo') {
+      return [
+              {
+                'platform': 'twitch',
+                'url': 'https://www.twitch.tv/lvpes2'
+              }
+            ]
+    } else if (game === 'clash') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes3'
+        }
+      ]
+    } else if (game === 'lol') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes'
+        }
+      ]
+    }
   }
 }
