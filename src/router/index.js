@@ -16,6 +16,12 @@ export default new Router({
       name: 'match-view',
       component: (resolve) => require(['@/view/MatchView'], resolve),
       props: true
+    },
+    {
+      path: '/*',
+      name: 'not-found-view',
+      component: (resolve) => require(['@/view/NotFoundView'], resolve),
+      props: true
     }
   ]
 })
