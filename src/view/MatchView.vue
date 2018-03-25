@@ -56,7 +56,7 @@
         <h2>
           Donde ver
         </h2>
-        <a class="match-view__live-info" v-for="live in match.live" :key="live.url" :href="live.url">
+        <a class="match-view__live-info" v-for="live in match.live" :key="live.url" :href="live.url" target="_blank">
           <img :src="'/static/img/live/' + live.platform + '.svg'" :alt="live.platform">
         </a>
       </div>
