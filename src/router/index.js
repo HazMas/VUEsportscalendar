@@ -12,6 +12,12 @@ export default new Router({
       component: (resolve) => require(['@/view/CalendarView'], resolve)
     },
     {
+      path: '/:competition/:game/info',
+      name: 'competition-view',
+      component: (resolve) => require(['@/view/CompetitionView'], resolve),
+      props: true
+    },
+    {
       path: '/:competition/:game/match/:matchId',
       name: 'match-view',
       component: (resolve) => require(['@/view/MatchView'], resolve),

@@ -42,9 +42,9 @@
         </router-link>
       </div>
       <div class="match-view__competition-info">
-        <span class="match-view__event-competition">
+        <router-link :to="{name: 'competition-view', params: {competition: match.competition, game: match.game}}" class="match-view__event-competition">
           <img :src="'/static/img/leagues/' + match.competition + '.png'" :alt="match.competition">
-        </span>
+        </router-link>
         <span class="match-view__event-game">
           <img :src="'/static/img/games/' + match.game + '.png'" :alt="match.game">
         </span>
@@ -176,6 +176,10 @@ export default {
 
 .match-view__event-round--csgo {
   background-color: #FFAD63;
+}
+
+.match-view__event-competition {
+  cursor: pointer;
 }
 
 </style>

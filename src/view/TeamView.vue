@@ -8,9 +8,9 @@
         <span>
           {{team.name}}
         </span>
-        <span class="team-view__event-competition">
+        <router-link :to="{name: 'competition-view', params: {competition: team.competition, game: team.game}}" tag="div" class="team-view__event-competition">
           <img :src="'/static/img/leagues/' + team.competition + '.png'" :alt="team.competition">
-        </span>
+        </router-link>
         <span class="team-view__event-game">
           <img :src="'/static/img/games/' + team.game + '.png'" :alt="team.game">
         </span>
@@ -71,6 +71,9 @@ export default {
 
 <style lang="scss">
 
+.team-view__event-competition {
+  cursor: pointer;
+}
 
 </style>
 
