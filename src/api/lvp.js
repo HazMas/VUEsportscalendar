@@ -75,12 +75,23 @@ export default {
   getTeam (game, teamId) {
     return axios.get(API_BASE + game + '/temporada/team/' + teamId)
       .then((response) => {
-        let match = {
+        let team = {
           'game': game,
           'competition': 'superliga-orange',
           ...response.data
         }
-        return match
+        return team
+      })
+  },
+  getLadders (game) {
+    return axios.get(API_BASE + game + '/temporada/ladder')
+      .then((response) => {
+        let ladder = {
+          'game': game,
+          'competition': 'superliga-orange',
+          'info': response.data
+        }
+        return ladder
       })
   }
 }
