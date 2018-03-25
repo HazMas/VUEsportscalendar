@@ -117,13 +117,21 @@ const webpackConfig = merge(baseWebpackConfig, {
     new SWPrecacheWebpackPlugin({
       cacheId: 'esportscalendar',
       filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      staticFileGlobs: ['dist/**/*.{js,html,css,svg,png}'],
       minify: true,
       stripPrefix: 'dist/',
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
           handler: 'cacheFirst'
+        },
+        {
+          urlPattern: /^https:\/\/esportscalendar\.herokuapp\.com\//,
+          handler: 'networkFirst'
+        },
+        {
+          urlPattern: /^https:\/\/cdn1\.api\.esl\.tv\/v1\/match/,
+          handler: 'networkFirst'
         },
         {
           urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
