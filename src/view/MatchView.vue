@@ -3,7 +3,7 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
-      <add-to-calendar :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
+      <add-to-calendar v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
         <div>
           <google-calendar id="google-calendar" class="match-view__calendar-link">
             <i class="fa fa-google"></i> Add to Google calendar
