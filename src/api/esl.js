@@ -1,11 +1,12 @@
 import axios from 'axios'
 
-const API_BASE = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
+const API_MATCHES_URL = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
+const API_TEAM_URL = 'https://cdn1.api.esl.tv/v1/team/detail?pids=10703&lang=es&uid='
 
 export default {
   getMatches () {
     const promises = [
-      axios.get(API_BASE)
+      axios.get(API_MATCHES_URL)
     ]
     return Promise.all(promises)
       .then((responses) => {
@@ -73,5 +74,45 @@ export default {
         }
       ]
     }
+  },
+  getTeam (game, teamId) {
+    return axios.get(API_TEAM_URL + teamId)
+      .then((response) => {
+        console.log(response.data)
+        return parseTeamData(response.data.items[0])
+      })
   }
+}
+
+function parseTeamData (teamData) {
+  return {
+    'game': 'csgo',
+    'competition': 'esl-masters',
+    'id': teamData['uid'],
+    'name': teamData['name'],
+    'image_url': teamData['logo_small'],
+    'social': parseSocialData(teamData),
+    'players': parsePlayeresData(teamData['players'])
+  }
+}
+
+function parseSocialData (teamData) {
+  return {
+    'facebook': teamData['facebook'],
+    'twitter': 'https://twitter.com/' + teamData['twitter'],
+    'homepage': teamData['homepage'],
+    'twitch': teamData['twitch_chanel'],
+    'youtube': teamData['youtube_chanel']
+  }
+}
+
+function parsePlayeresData (playersData) {
+  return playersData.map((playerData) => {
+    return {
+      'name': playerData['firstname'] + ' ' + playerData['lastname'],
+      'image_url': playerData['photo'],
+      'nick': playerData['nickname'],
+      'position': playerData['position']
+    }
+  })
 }
