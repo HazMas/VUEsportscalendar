@@ -1,7 +1,7 @@
 import moment from 'moment'
 
 function isScheduled (match) {
-  return match.status === 'scheduled'
+  return match.status === 'scheduled' && !moment(this.match.start_date).isBefore(moment())
 }
 
 function isFinished (match) {
