@@ -17,9 +17,9 @@
         {{match | startFullDate}}
       </h1>
       <div class="match-view__teams">
-        <div class="match-view__team">
+        <router-link :to="{name: 'team-view', params: {teamId: match.team_a.id}}" tag="div" class="match-view__team">
           <img class="match-view__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
-        </div>
+        </router-link>
         <div class="match-view__result" v-if="isFinished(match) || isLive(match)">
           <div class="match-view__result-a">
             {{match.result_a}}
@@ -37,9 +37,9 @@
         <div class="match-view__result" v-if="isScheduled(match)">
           {{match | startTime}} h
         </div>
-        <div class="match-view__team">
+        <router-link :to="{name: 'team-view', params: {teamId: match.team_b.id}}" tag="div" class="match-view__team">
           <img class="match-view__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
-        </div>
+        </router-link>
       </div>
       <div class="match-view__competition-info">
         <span class="match-view__event-competition">
@@ -150,6 +150,7 @@ export default {
 
 .match-view__team {
   display: inline-block;
+  cursor: pointer;
 }
 
 .match-view__result {

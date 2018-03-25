@@ -18,6 +18,12 @@ export default new Router({
       props: true
     },
     {
+      path: '/:competition/:game/team/:teamId',
+      name: 'team-view',
+      component: (resolve) => require(['@/view/TeamView'], resolve),
+      props: true
+    },
+    {
       path: '/*',
       name: 'not-found-view',
       component: (resolve) => require(['@/view/NotFoundView'], resolve),
