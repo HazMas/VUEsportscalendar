@@ -8,11 +8,11 @@
         <span>
           {{team.name}}
         </span>
-        <router-link :to="{name: 'competition-view', params: {competition: team.competition, game: team.game}}" tag="div" class="team-view__event-competition">
-          <img :src="'/static/img/leagues/' + team.competition + '.png'" :alt="team.competition">
+        <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" tag="div" class="team-view__event-competition">
+          <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
         </router-link>
         <span class="team-view__event-game">
-          <img :src="'/static/img/games/' + team.game + '.png'" :alt="team.game">
+          <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
       </div>
       <div class="team-view__players">
@@ -30,6 +30,7 @@
           </a>
         </div>
       </div>
+      <ladders :competition="competition" :game="game"></ladders>
     </div>
   </div>
 </template>
@@ -37,7 +38,9 @@
 <script>
 import lvp from '@/api/lvp'
 import esl from '@/api/esl'
+
 import Loader from '@/components/Loader'
+import Ladders from '@/components/Ladders'
 
 export default {
   name: 'team-view',
@@ -72,7 +75,8 @@ export default {
     }
   },
   components: {
-    Loader
+    Loader,
+    Ladders
   }
 }
 </script>

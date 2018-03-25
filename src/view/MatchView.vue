@@ -42,11 +42,11 @@
         </router-link>
       </div>
       <div class="match-view__competition-info">
-        <router-link :to="{name: 'competition-view', params: {competition: match.competition, game: match.game}}" class="match-view__event-competition">
-          <img :src="'/static/img/leagues/' + match.competition + '.png'" :alt="match.competition">
+        <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" class="match-view__event-competition">
+          <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
         </router-link>
         <span class="match-view__event-game">
-          <img :src="'/static/img/games/' + match.game + '.png'" :alt="match.game">
+          <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
         <span :class="matchItemEventRoundClasses">
           J{{match.round}}
@@ -60,6 +60,7 @@
           <img :src="'/static/img/live/' + live.platform + '.svg'" :alt="live.platform">
         </a>
       </div>
+      <ladders :competition="competition" :game="game"></ladders>
     </div>
   </div>
 </template>
@@ -70,7 +71,10 @@ import AddToCalendar from 'vue-add-to-calendar'
 
 import lvp from '@/api/lvp'
 import esl from '@/api/esl'
+
 import Loader from '@/components/Loader'
+import Ladders from '@/components/Ladders'
+
 import {isScheduled, isFinished, isLive, startTime, startFullDate} from '@/helpers/MatchHelpers'
 
 export default {
@@ -132,7 +136,8 @@ export default {
   },
   components: {
     Loader,
-    AddToCalendar
+    AddToCalendar,
+    Ladders
   }
 }
 </script>
