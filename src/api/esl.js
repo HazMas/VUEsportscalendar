@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const API_MATCHES_URL = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
 const API_TEAM_URL = 'https://cdn1.api.esl.tv/v1/team/detail?pids=10703&lang=es&uid='
+const API_LADDER_URL = 'https://cdn1.api.esl.tv/v1/teamranking/list?pid=10703&lang=undefined&'
 
 export default {
   getMatches () {
@@ -41,22 +42,15 @@ export default {
           'result_a': match.result_team1, // eslint-disable-line camelcase
           'result_b': match.result_team2, // eslint-disable-line camelcase
           'team_a': {
-            ...this.parseMatchTeamInfo(match.team1)
+            ...parseTeamInfo(match.team1)
           },
           'team_b': {
-            ...this.parseMatchTeamInfo(match.team2)
+            ...parseTeamInfo(match.team2)
           },
           'status': this.parseMatchStatus(match),
           'live': this.getLive('csgo')
         }
       })
-  },
-  parseMatchTeamInfo (team) {
-    return {
-      'id': team.uid,
-      'name': team.name,
-      'image_url': team.logo_small
-    }
   },
   parseMatchStatus ({winner, islive}) {
     if (winner !== '0' && islive === '0') {
@@ -78,10 +72,49 @@ export default {
   getTeam (game, teamId) {
     return axios.get(API_TEAM_URL + teamId)
       .then((response) => {
-        console.log(response.data)
         return parseTeamData(response.data.items[0])
       })
+  },
+  getLadders (game) {
+    return axios.get(API_LADDER_URL)
+      .then((response) => {
+        let ladder = {
+          'game': game,
+          'competition': 'esl-masters',
+          'info': parseLadderData(response.data.items[0].groups[0].teams)
+        }
+        return ladder
+      })
   }
+}
+
+function parseLadderData (laddersData) {
+  return laddersData.map((ladderData) => {
+    return {
+      'id': ladderData['pid'],
+      'rank': ladderData['position'],
+      'points': ladderData['points'],
+      'win': ladderData['matches_won'],
+      'loss': ladderData['matches_lost'],
+      'draw': ladderData['matches_draw'],
+      'team': parseTeamLadderInfo(ladderData['team'])
+    }
+  })
+}
+
+function parseTeamInfo (team) {
+  return {
+    'id': team.uid,
+    'name': team.name,
+    'image_url': team.logo_small
+  }
+}
+
+function parseTeamLadderInfo (team) {
+  team = parseTeamInfo(team)
+  team['image_url'] = 'http://es.pro.eslgaming.com/' + team['image_url']
+
+  return team
 }
 
 function parseTeamData (teamData) {
