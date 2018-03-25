@@ -71,5 +71,16 @@ export default {
         }
         return match
       })
+  },
+  getTeam (game, teamId) {
+    return axios.get(API_BASE + game + '/temporada/team/' + teamId)
+      .then((response) => {
+        let match = {
+          'game': game,
+          'competition': 'superliga-orange',
+          ...response.data
+        }
+        return match
+      })
   }
 }
