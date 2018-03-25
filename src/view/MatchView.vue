@@ -52,6 +52,11 @@
           J{{match.round}}
         </span>
       </div>
+      <vue-countdown :time="timeToStart" v-if="isScheduled(match)">
+        <template slot-scope="props">
+          El partido comenzará en：{{ props.days }}d, {{ props.hours }}h, {{ props.minutes }}m, {{ props.seconds }}s.
+        </template>
+      </vue-countdown>
       <div class="match-view__live" v-if="!isFinished(match) && match.live">
         <h2>
           Donde ver
@@ -70,6 +75,7 @@
 <script>
 import moment from 'moment'
 import AddToCalendar from 'vue-add-to-calendar'
+import VueCountdown from '@xkeshi/vue-countdown'
 
 import lvp from '@/api/lvp'
 import esl from '@/api/esl'
@@ -113,6 +119,9 @@ export default {
     }
   },
   computed: {
+    timeToStart () {
+      return this.startDate - (new Date()).getTime()
+    },
     startDate () {
       return moment(this.match.start_date).toDate()
     },
@@ -141,7 +150,8 @@ export default {
     Loader,
     AddToCalendar,
     Ladders,
-    Players
+    Players,
+    VueCountdown
   }
 }
 </script>
