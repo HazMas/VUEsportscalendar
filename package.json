@@ -15,6 +15,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "@xkeshi/vue-countdown": "^0.6.0",
     "axios": "^0.17.1",
     "moment": "^2.21.0",
     "v-calendar": "^0.7.5",
