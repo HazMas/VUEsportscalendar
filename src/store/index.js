@@ -13,7 +13,7 @@ export default new Vuex.Store({
     matches: [],
     _matches: [],
     selectedDate: new Date(),
-    loading: false
+    loading: true
   },
   getters: {
     matches (state) {

@@ -17,30 +17,81 @@ export default {
           ...responses[0].data.map((match) => {
             match.game = 'lol'
             match.competition = 'superliga-orange'
+            match.live = this.getLive(match.game)
             return match
           }),
           ...responses[1].data.map((match) => {
             match.game = 'clash'
             match.competition = 'superliga-orange'
+            match.live = this.getLive(match.game)
             return match
           }),
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
             match.competition = 'superliga-orange'
-            return match
-          }),
-          ...responses[3].data.map((match) => {
-            match.game = 'lol'
-            match.competition = 'lacopa-elcorteingles'
-            return match
-          }),
-          ...responses[4].data.map((match) => {
-            match.game = 'lol'
-            match.competition = 'lvp-segunda'
+            match.live = this.getLive(match.game)
             return match
           })
         ]
         return matches
+      })
+  },
+  getLive (game) {
+    if (game === 'csgo') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes2'
+        }
+      ]
+    } else if (game === 'clash') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes3'
+        }
+      ]
+    } else if (game === 'lol') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes'
+        }
+      ]
+    }
+  },
+  getMatch (game, matchId) {
+    return axios.get(API_BASE + game + '/temporada/match/' + matchId)
+      .then((response) => {
+        let match = {
+          'game': game,
+          'competition': 'superliga-orange',
+          'live': this.getLive(game),
+          ...response.data
+        }
+        return match
+      })
+  },
+  getTeam (game, teamId) {
+    return axios.get(API_BASE + game + '/temporada/team/' + teamId)
+      .then((response) => {
+        let team = {
+          'game': game,
+          'competition': 'superliga-orange',
+          ...response.data
+        }
+        return team
+      })
+  },
+  getLadders (game) {
+    return axios.get(API_BASE + game + '/temporada/ladder')
+      .then((response) => {
+        let ladder = {
+          'game': game,
+          'competition': 'superliga-orange',
+          'info': response.data
+        }
+        return ladder
       })
   }
 }

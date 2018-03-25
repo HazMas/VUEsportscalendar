@@ -1,5 +1,5 @@
 <template>
-  <div class="match-item">
+  <router-link tag="div" :to="{ name: 'match-view', params: { competition: match.competition, game: match.game, matchId: match.id }}" class="match-item">
     <div :class="matchItemEventClasses">
       <span :class="matchItemEventRoundClasses">
         J{{match.round}}
@@ -14,40 +14,36 @@
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
     </div>
-    <div class="match-item__result" v-if="isFinished || isPlaying">
-      <div class="match-item__result-a">{{match.result_a}}</div>
-      <span class="match-item__separator">·</span>
-      <div class="match-item__result-b">{{match.result_b}}</div>
-      <span v-if="isPlaying">En juego</span>
+    <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
+      <div class="match-item__result-a">
+        {{match.result_a}}
+      </div>
+      <span class="match-item__separator">
+        vs
+      </span>
+      <div class="match-item__result-b">
+        {{match.result_b}}
+      </div>
+      <span v-if="isLive(match)">
+        En juego
+      </span>
     </div>
-    <div class="match-item__result" v-if="isScheduled">
-      {{date}} h
+    <div class="match-item__result" v-if="isScheduled(match)">
+      {{match | startTime}} h
     </div>
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_a.name">
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
-import moment from 'moment'
+import {isScheduled, isLive, isFinished, startTime} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
   props: ['match'],
   computed: {
-    isScheduled () {
-      return this.match.status === 'scheduled'
-    },
-    isFinished () {
-      return this.match.status === 'finished'
-    },
-    isPlaying () {
-      return !this.isScheduled && !this.isFinished
-    },
-    date () {
-      return moment(this.match.start_date).format('HH:mm')
-    },
     matchItemEventClasses () {
       return {
         'match-item__event': true,
@@ -64,6 +60,14 @@ export default {
         'match-item__event-round--csgo': this.match.game === 'csgo'
       }
     }
+  },
+  methods: {
+    isScheduled,
+    isLive,
+    isFinished
+  },
+  filters: {
+    startTime
   }
 }
 </script>
@@ -80,6 +84,7 @@ export default {
     background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 0%, #323D62 100%);
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-radius: 6px 0 0 6px;
+    cursor: pointer;
   }
   .match-item__event {
     background: #354065;

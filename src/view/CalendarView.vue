@@ -66,6 +66,9 @@ export default {
     CalendarTab,
     Loader
   },
+  metaInfo: {
+    title: 'Calendario'
+  },
   methods: {
     updateDate (date) {
       const payload = {
@@ -93,15 +96,6 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
-    background-image: linear-gradient(135deg, #424E75 0%, #282949 45%, #262C4A 100%);
-    margin: 0;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Oswald', sans-serif;
-     color: #fff;
-  }
   .calendar-view {
     display: flex;
     padding:0 6% 0 6%;

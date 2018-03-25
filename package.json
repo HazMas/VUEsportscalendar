@@ -15,13 +15,16 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "@xkeshi/vue-countdown": "^0.6.0",
     "axios": "^0.17.1",
     "moment": "^2.21.0",
     "v-calendar": "^0.7.5",
     "v-offline": "^1.0.8",
     "vue": "^2.5.2",
+    "vue-add-to-calendar": "^1.0.4",
     "vue-lazyload": "^1.1.4",
     "vue-loaders": "^2.0.0",
+    "vue-meta": "^1.5.0",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

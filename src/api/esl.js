@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-const API_BASE = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
+const API_MATCHES_URL = 'https://cdn1.api.esl.tv/v1/match/perday?parentpid=10703&pids=&lang=es&status=&type=undefined&offset=-1&rematches=undefined&maxdays=undefined&'
+const API_TEAM_URL = 'https://cdn1.api.esl.tv/v1/team/detail?pids=10703&lang=es&uid='
+const API_LADDER_URL = 'https://cdn1.api.esl.tv/v1/teamranking/list?pid=10703&lang=undefined&'
 
 export default {
   getMatches () {
     const promises = [
-      axios.get(API_BASE)
+      axios.get(API_MATCHES_URL)
     ]
     return Promise.all(promises)
       .then((responses) => {
@@ -20,6 +22,14 @@ export default {
         return matches
       })
   },
+  getMatch (game, matchId) {
+    return this.getMatches()
+      .then((matches) => {
+        return matches.find((match) => {
+          return match.game === game && match.id === matchId
+        })
+      })
+  },
   parseMatchesFromMatchDay ({matches, matchday}) { // eslint-disable-line camelcase
     return matches.map(
       (match) => {
@@ -32,21 +42,15 @@ export default {
           'result_a': match.result_team1, // eslint-disable-line camelcase
           'result_b': match.result_team2, // eslint-disable-line camelcase
           'team_a': {
-            ...this.parseMatchTeamInfo(match.team1)
+            ...parseTeamInfo(match.team1)
           },
           'team_b': {
-            ...this.parseMatchTeamInfo(match.team2)
+            ...parseTeamInfo(match.team2)
           },
-          'status': this.parseMatchStatus(match)
+          'status': this.parseMatchStatus(match),
+          'live': this.getLive('csgo')
         }
       })
-  },
-  parseMatchTeamInfo (team) {
-    return {
-      'id': team.uid,
-      'name': team.name,
-      'image_url': team.logo_small
-    }
   },
   parseMatchStatus ({winner, islive}) {
     if (winner !== '0' && islive === '0') {
@@ -54,5 +58,94 @@ export default {
     } else if (winner === '0' && islive === '0') {
       return 'scheduled'
     }
+  },
+  getLive (game) {
+    if (game === 'csgo') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/ESL_csgo_es'
+        }
+      ]
+    }
+  },
+  getTeam (game, teamId) {
+    return axios.get(API_TEAM_URL + teamId)
+      .then((response) => {
+        return parseTeamData(response.data.items[0])
+      })
+  },
+  getLadders (game) {
+    return axios.get(API_LADDER_URL)
+      .then((response) => {
+        let ladder = {
+          'game': game,
+          'competition': 'esl-masters',
+          'info': parseLadderData(response.data.items[0].groups[0].teams)
+        }
+        return ladder
+      })
   }
+}
+
+function parseLadderData (laddersData) {
+  return laddersData.map((ladderData) => {
+    return {
+      'id': ladderData['pid'],
+      'rank': ladderData['position'],
+      'points': ladderData['points'],
+      'win': ladderData['matches_won'],
+      'loss': ladderData['matches_lost'],
+      'draw': ladderData['matches_draw'],
+      'team': parseTeamLadderInfo(ladderData['team'])
+    }
+  })
+}
+
+function parseTeamInfo (team) {
+  return {
+    'id': team.uid,
+    'name': team.name,
+    'image_url': team.logo_small
+  }
+}
+
+function parseTeamLadderInfo (team) {
+  team = parseTeamInfo(team)
+  team['image_url'] = 'http://es.pro.eslgaming.com/' + team['image_url']
+
+  return team
+}
+
+function parseTeamData (teamData) {
+  return {
+    'game': 'csgo',
+    'competition': 'esl-masters',
+    'id': teamData['uid'],
+    'name': teamData['name'],
+    'image_url': teamData['logo_small'],
+    'social': parseSocialData(teamData),
+    'players': parsePlayeresData(teamData['players'])
+  }
+}
+
+function parseSocialData (teamData) {
+  return {
+    'facebook': teamData['facebook'],
+    'twitter': 'https://twitter.com/' + teamData['twitter'],
+    'homepage': teamData['homepage'],
+    'twitch': teamData['twitch_chanel'],
+    'youtube': teamData['youtube_chanel']
+  }
+}
+
+function parsePlayeresData (playersData) {
+  return playersData.map((playerData) => {
+    return {
+      'name': playerData['firstname'] + ' ' + playerData['lastname'],
+      'image_url': playerData['photo'],
+      'nick': playerData['nickname'],
+      'position': playerData['position']
+    }
+  })
 }
