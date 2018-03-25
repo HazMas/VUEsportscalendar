@@ -48,17 +48,25 @@ export default {
         .then((team) => {
           this.team = team
           this.loading = false
+          this.title = team.name
         })
     } else if (this.competition === 'esl-masters') {
       esl.getTeam(this.game, this.teamId)
         .then((team) => {
           this.team = team
           this.loading = false
+          this.title = team.name
         })
+    }
+  },
+  metaInfo () {
+    return {
+      title: this.title
     }
   },
   data () {
     return {
+      title: 'cargando...',
       loading: true,
       team: undefined
     }

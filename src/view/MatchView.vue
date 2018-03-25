@@ -82,17 +82,25 @@ export default {
         .then((match) => {
           this.match = match
           this.loading = false
+          this.title = match.team_a.name + ' vs ' + this.match.team_b.name
         })
     } else if (this.competition === 'esl-masters') {
       esl.getMatch(this.game, this.matchId)
         .then((match) => {
           this.match = match
           this.loading = false
+          this.title = match.team_a.name + ' vs ' + this.match.team_b.name
         })
+    }
+  },
+  metaInfo () {
+    return {
+      title: this.title
     }
   },
   data () {
     return {
+      title: 'cargando...',
       loading: true,
       match: undefined
     }

@@ -25,6 +25,10 @@ import WebFooter from '@/components/WebFooter'
 
 export default {
   name: 'app',
+  metaInfo: {
+    title: 'Inicio',
+    titleTemplate: '%s | E-Sports Calendar'
+  },
   components: {
     detectNetwork,
     WebFooter

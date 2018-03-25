@@ -50,6 +50,11 @@ export default {
         })
     }
   },
+  metaInfo () {
+    return {
+      title: 'Clasificación'
+    }
+  },
   data () {
     return {
       loading: true,

@@ -66,6 +66,9 @@ export default {
     CalendarTab,
     Loader
   },
+  metaInfo: {
+    title: 'Calendario'
+  },
   methods: {
     updateDate (date) {
       const payload = {
