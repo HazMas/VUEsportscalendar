@@ -61,6 +61,8 @@
         </a>
       </div>
       <ladders :competition="competition" :game="game"></ladders>
+      <players :competition="competition" :game="game" :teamData="match.team_a"></players>
+      <players :competition="competition" :game="game" :teamData="match.team_b"></players>
     </div>
   </div>
 </template>
@@ -74,6 +76,7 @@ import esl from '@/api/esl'
 
 import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
+import Players from '@/components/Players'
 
 import {isScheduled, isFinished, isLive, startTime, startFullDate} from '@/helpers/MatchHelpers'
 
@@ -137,7 +140,8 @@ export default {
   components: {
     Loader,
     AddToCalendar,
-    Ladders
+    Ladders,
+    Players
   }
 }
 </script>

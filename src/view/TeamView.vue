@@ -15,14 +15,7 @@
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
       </div>
-      <div class="team-view__players">
-        <div v-for="player in team.players" :key="player.id" class="team-view__player">
-          <img class="team-view__player-img" v-lazy="player.image_url" :alt="player.name">          
-          <span>
-            {{player.name}} {{player.nick}} {{player.position}}
-          </span>
-        </div>
-      </div>
+      
       <div class="team-view__social">
         <div v-for="(url, social) in team.social" :key="social" class="team-view__social-item">
           <a :href="url">
@@ -31,6 +24,7 @@
         </div>
       </div>
       <ladders :competition="competition" :game="game"></ladders>
+      <players :competition="competition" :game="game" :teamData="team"></players>
     </div>
   </div>
 </template>
@@ -41,6 +35,7 @@ import esl from '@/api/esl'
 
 import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
+import Players from '@/components/Players'
 
 export default {
   name: 'team-view',
@@ -76,7 +71,8 @@ export default {
   },
   components: {
     Loader,
-    Ladders
+    Ladders,
+    Players
   }
 }
 </script>
