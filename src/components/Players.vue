@@ -2,11 +2,22 @@
   <div>
     <loader v-if="loading">
     </loader>
-    <div class="team-view__players" v-else>
-      <div v-for="player in team.players" :key="player.id" class="team-view__player">
-        <img class="team-view__player-img" v-lazy="player.image_url" :alt="player.name">          
-        <span>
-          {{player.name}} {{player.nick}} {{player.position}}
+    <div class="players" v-else>
+      <div v-for="player in team.players" :key="player.id" class="player-row">
+        <div class="player-picname">
+          <div class="player">
+            <img class="player-img" v-lazy="player.image_url" :alt="player.name">
+          </div>
+          <span class="player-name">
+            {{player.name}}
+            <span class="player-nick">
+              "{{player.nick}}"
+            </span>
+          </span>
+        </div>
+
+        <span class="player-position">
+          {{player.position}}
         </span>
       </div>
     </div>
@@ -63,5 +74,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.players {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0 6%;
+}
+.player-row {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.2)
+}
+.player {
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  border-radius: 100px;
+  border: 3px solid white;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+}
+.player-picname{
+  display: flex;
+  align-items: center;
+}
+.player-nick {
+  font-weight: lighter;
+}
+.player-img {
+  width: 100%;
+}
+.player-name {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
 </style>
