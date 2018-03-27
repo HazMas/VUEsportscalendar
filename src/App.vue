@@ -3,7 +3,7 @@
     <header>
       <span></span>
       <h1>
-        E-Sports Calendar
+        <img class="header__logo" src="./assets/img/logotype-esc.svg" alt="Esports calendar, calendario de e-sports">
       </h1>
       <detect-network class="offline-dino">
         <div slot="offline">
@@ -41,6 +41,10 @@ header {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
   padding:0 6% 0 6%;
+}
+.header__logo {
+  width: 100%;
+  max-width: 200px;
 }
 body {
   background-image: linear-gradient(135deg, #424E75 0%, #282949 45%, #262C4A 100%);
