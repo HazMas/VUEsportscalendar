@@ -27,23 +27,31 @@ export default {
   name: 'ladders',
   props: ['competition', 'game'],
   created () {
-    if (this.competition === 'superliga-orange') {
-      lvp.getLadders(this.game)
-        .then((ladders) => {
-          this.ladders = ladders
-          this.loading = false
-        })
-    } else if (this.competition === 'esl-masters') {
-      esl.getLadders(this.game)
-        .then((ladders) => {
-          this.ladders = ladders
-          this.loading = false
-        })
-    }
+    this.fetchData()
   },
   data () {
     return {
       loading: true
+    }
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  methods: {
+    fetchData () {
+      if (this.competition === 'superliga-orange') {
+        lvp.getLadders(this.game)
+          .then((ladders) => {
+            this.ladders = ladders
+            this.loading = false
+          })
+      } else if (this.competition === 'esl-masters') {
+        esl.getLadders(this.game)
+          .then((ladders) => {
+            this.ladders = ladders
+            this.loading = false
+          })
+      }
     }
   },
   components: {

@@ -90,21 +90,7 @@ export default {
   name: 'match-view',
   props: ['competition', 'game', 'matchId'],
   created () {
-    if (this.competition === 'superliga-orange') {
-      lvp.getMatch(this.game, this.matchId)
-        .then((match) => {
-          this.match = match
-          this.loading = false
-          this.title = match.team_a.name + ' vs ' + this.match.team_b.name
-        })
-    } else if (this.competition === 'esl-masters') {
-      esl.getMatch(this.game, this.matchId)
-        .then((match) => {
-          this.match = match
-          this.loading = false
-          this.title = match.team_a.name + ' vs ' + this.match.team_b.name
-        })
-    }
+    this.fetchData()
   },
   metaInfo () {
     return {
@@ -140,7 +126,27 @@ export default {
   methods: {
     isScheduled,
     isFinished,
-    isLive
+    isLive,
+    fetchData () {
+      if (this.competition === 'superliga-orange') {
+        lvp.getMatch(this.game, this.matchId)
+          .then((match) => {
+            this.match = match
+            this.loading = false
+            this.title = match.team_a.name + ' vs ' + this.match.team_b.name
+          })
+      } else if (this.competition === 'esl-masters') {
+        esl.getMatch(this.game, this.matchId)
+          .then((match) => {
+            this.match = match
+            this.loading = false
+            this.title = match.team_a.name + ' vs ' + this.match.team_b.name
+          })
+      }
+    }
+  },
+  watch: {
+    '$route': 'fetchData'
   },
   filters: {
     startTime,

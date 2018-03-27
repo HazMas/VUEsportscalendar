@@ -23,30 +23,38 @@ export default {
   name: 'team',
   props: ['competition', 'game', 'teamData'],
   created () {
-    if (!this.teamData.players) {
-      if (this.competition === 'superliga-orange') {
-        lvp.getTeam(this.game, this.teamData.id)
-          .then((team) => {
-            this.team = team
-            this.loading = false
-          })
-      } else if (this.competition === 'esl-masters') {
-        esl.getTeam(this.game, this.teamData.id)
-          .then((team) => {
-            this.team = team
-            this.loading = false
-          })
-      }
-    } else {
-      this.loading = false
-      this.team = this.teamData
-    }
+    this.fetchData()
   },
   data () {
     return {
       team: undefined,
       loading: true
     }
+  },
+  methods: {
+    fetchData () {
+      if (!this.teamData.players) {
+        if (this.competition === 'superliga-orange') {
+          lvp.getTeam(this.game, this.teamData.id)
+            .then((team) => {
+              this.team = team
+              this.loading = false
+            })
+        } else if (this.competition === 'esl-masters') {
+          esl.getTeam(this.game, this.teamData.id)
+            .then((team) => {
+              this.team = team
+              this.loading = false
+            })
+        }
+      } else {
+        this.loading = false
+        this.team = this.teamData
+      }
+    }
+  },
+  watch: {
+    '$route': 'fetchData'
   },
   components: {
     Loader
