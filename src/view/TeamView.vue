@@ -41,21 +41,7 @@ export default {
   name: 'team-view',
   props: ['competition', 'game', 'teamId'],
   created () {
-    if (this.competition === 'superliga-orange') {
-      lvp.getTeam(this.game, this.teamId)
-        .then((team) => {
-          this.team = team
-          this.loading = false
-          this.title = team.name
-        })
-    } else if (this.competition === 'esl-masters') {
-      esl.getTeam(this.game, this.teamId)
-        .then((team) => {
-          this.team = team
-          this.loading = false
-          this.title = team.name
-        })
-    }
+    this.fetchData()
   },
   metaInfo () {
     return {
@@ -68,6 +54,28 @@ export default {
       loading: true,
       team: undefined
     }
+  },
+  methods: {
+    fetchData () {
+      if (this.competition === 'superliga-orange') {
+        lvp.getTeam(this.game, this.teamId)
+          .then((team) => {
+            this.team = team
+            this.loading = false
+            this.title = team.name
+          })
+      } else if (this.competition === 'esl-masters') {
+        esl.getTeam(this.game, this.teamId)
+          .then((team) => {
+            this.team = team
+            this.loading = false
+            this.title = team.name
+          })
+      }
+    }
+  },
+  watch: {
+    '$route': 'fetchData'
   },
   components: {
     Loader,
