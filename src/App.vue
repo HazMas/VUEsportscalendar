@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import '@/assets/css/icons.css'
 import detectNetwork from 'v-offline'
 
 import WebFooter from '@/components/WebFooter'

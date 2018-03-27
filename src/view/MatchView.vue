@@ -3,43 +3,46 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
-      <add-to-calendar v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
-        <div>
-          <google-calendar id="google-calendar" class="match-view__calendar-link">
-            <i class="fa fa-google"></i> Add to Google calendar
-          </google-calendar>
-          <microsoft-calendar id="microsoft-calendar" class="match-view__calendar-link">
-            <i class="fa fa-windows"></i> Add to Microsoft live calendar
-          </microsoft-calendar>
-        </div>
-      </add-to-calendar>
-      <h1 class="match-view">
-        {{match | startFullDate}}
-      </h1>
-      <div class="match-view__teams">
-        <router-link :to="{name: 'team-view', params: {teamId: match.team_a.id}}" tag="div" class="match-view__team">
-          <img class="match-view__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
-        </router-link>
-        <div class="match-view__result" v-if="isFinished(match) || isLive(match)">
-          <div class="match-view__result-a">
-            {{match.result_a}}
+      <div class="match-view__head-description">
+        <div class="match-view__header">
+          <div>
+            <span class="icon-back"></span>
           </div>
-          <span class="match-view__separator">
-            vs
-          </span>
-          <div class="match-view__result-b">
-            {{match.result_b}}
+          <h1 class="match-view">
+            {{match | startFullDate}}
+          </h1>
+          <add-to-calendar class="match-view__notification" v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
+              <google-calendar class="match-view__calendar-link">
+                <span class="icon-bell-line"></span>
+              </google-calendar>
+          </add-to-calendar>
+        </div>
+
+        <div class="match-view__teams">
+          <router-link :to="{name: 'team-view', params: {teamId: match.team_a.id}}" tag="div" class="match-view__team match-view__team--left">
+            <img class="match-view__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
+          </router-link>
+          <div class="match-view__result" v-if="isFinished(match) || isLive(match)">
+            <div class="match-view__result-a">
+              {{match.result_a}}
+            </div>
+            <span class="match-view__separator">
+              vs
+            </span>
+            <div class="match-view__result-b">
+              {{match.result_b}}
+            </div>
+            <span v-if="isLive(match)">
+              En juego
+            </span>
           </div>
-          <span v-if="isLive(match)">
-            En juego
-          </span>
+          <div class="match-view__result" v-if="isScheduled(match)">
+            {{match | startTime}} h
+          </div>
+          <router-link :to="{name: 'team-view', params: {teamId: match.team_b.id}}" tag="div" class="match-view__team match-view__team--right">
+            <img class="match-view__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
+          </router-link>
         </div>
-        <div class="match-view__result" v-if="isScheduled(match)">
-          {{match | startTime}} h
-        </div>
-        <router-link :to="{name: 'team-view', params: {teamId: match.team_b.id}}" tag="div" class="match-view__team">
-          <img class="match-view__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
-        </router-link>
       </div>
       <div class="match-view__competition-info">
         <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" class="match-view__event-competition">
@@ -54,15 +57,25 @@
       </div>
       <vue-countdown :time="timeToStart" v-if="isScheduled(match)">
         <template slot-scope="props">
-          El partido comenzará en：{{ props.days }}d, {{ props.hours }}h, {{ props.minutes }}m, {{ props.seconds }}s.
+          <div class="match-view__competition-info-time"><span class="match-view__competition-info-time-title">El partido comenzará en:</span> <span class="match-view__competition-info-time-countdown">{{ props.days }}d - {{ props.hours }}h - {{ props.minutes }}m - {{ props.seconds }}s.</span></div>
         </template>
       </vue-countdown>
       <div class="match-view__live" v-if="!isFinished(match) && match.live">
-        <h2>
+        <h2 class="match-view__live-title">
           Donde ver
         </h2>
-        <a class="match-view__live-info" v-for="live in match.live" :key="live.url" :href="live.url" target="_blank">
-          <img :src="'/static/img/live/' + live.platform + '.svg'" :alt="live.platform">
+        <a class="match-view__live-link" v-for="live in match.live" :key="live.url" :href="live.url" target="_blank">
+          <div>
+            <div class="match-view__live-link-live">
+              <span>
+                <img src=/static/img/live/dot.svg alt="en directo">
+              </span>
+              <span>
+                En directo
+              </span>
+            </div>
+            <img class="match-view__live-link-img" :src="'/static/img/live/' + live.platform + '.svg'" :alt="live.platform">
+          </div>
         </a>
       </div>
       <ladders :competition="competition" :game="game"></ladders>
@@ -163,33 +176,68 @@ export default {
 </script>
 
 <style lang="scss">
+.match-view__head-description {
+  background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
+}
+.match-view__header {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
 
-.match-view__calendar-link {
+}
+.match-view__notification {
+  display: flex;
+  justify-content: flex-end;
   text-decoration: none;
   color: white;
-  display: block;
-} 
+  font-size: 20px;
+  color: #7E8BBC;
+}
 .match-view__teams {
   display: flex;
-  justify-content: center;
+  justify-content:space-between;
   align-items: center;
-}
-
-.match-view__competition-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-bottom: 70px;
 }
 
 .match-view__team {
-  display: inline-block;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
+  z-index: 10;
 }
-
+.match-view__team--left  {
+  margin-right: -15%;
+}
+.match-view__team--right {
+  margin-left: -15%;
+}
 .match-view__result {
-  display: inline-block;
+  background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 0%, #323D62 100%);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  font-size:22px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
+.match-view__team-shield-img {
+  width: 70%;
+  max-width: 150px;
+}
+.match-view__competition-info {
+  margin-top: -50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .match-view__event-round {
   font-size: 48px;
   font-weight: bold;
@@ -197,8 +245,7 @@ export default {
   padding: 3px 5px;
   border-radius: 3px;
   white-space: nowrap;
-} 
-
+}
 .match-view__event-round--clash {
   background-color: #5185E0;
 }
@@ -213,6 +260,45 @@ export default {
 
 .match-view__event-competition {
   cursor: pointer;
+}
+.match-view__competition-info-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding: 20px 0 20px 0;
+  margin: 0 16px 0 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.match-view__competition-info-time-title{
+}
+.match-view__competition-info-time-countdown {
+  font-weight: lighter;
+}
+
+.match-view__live-title {
+  text-align: center;
+}
+.match-view__live-link {
+  background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 0%, #323D62 100%);
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0 6% 0 6%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  text-decoration: none;
+
+}
+.match-view__live-link-live {
+  color:#fff;
+  margin-bottom: 5px;
+}
+.match-view__live-link-img {
+  width: 100%;
 }
 
 </style>
