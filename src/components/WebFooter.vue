@@ -30,7 +30,7 @@ div {
 .feedback-contact-icon {
   width: 20px;
   height:20px;
-  padding-left: 5px;
+  padding-right: 5px;
 }
 </style>
 
