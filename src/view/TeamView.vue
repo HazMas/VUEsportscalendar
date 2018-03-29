@@ -3,10 +3,9 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
-
       <div class="team-view__head-description">
-        <div class="match-view__header">
-          <div>
+        <div class="team-view__header">
+          <div @click="$router.back()" class="team-view__back">
             <span class="icon-back"></span>
           </div>
           <h1 class="team-view">
@@ -101,7 +100,7 @@ export default {
 .team-view__head-description {
   background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }
-.match-view__header {
+.team-view__header {
   display:flex;
   align-items: center;
   justify-content: space-between;
@@ -129,6 +128,10 @@ export default {
 }
 
 .team-view__event-competition {
+  cursor: pointer;
+}
+
+.team-view__back {
   cursor: pointer;
 }
 
