@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from 'moment'
 
 const API_BASE = 'https://esportscalendar.herokuapp.com/superliga/'
 
@@ -7,9 +8,9 @@ export default {
     const promises = [
       axios.get(API_BASE + 'lol/temporada/matches'),
       axios.get(API_BASE + 'clash/temporada/matches'),
-      axios.get(API_BASE + 'csgo/temporada/matches'),
-      axios.get(API_BASE + 'lol/copa/matches'),
-      axios.get(API_BASE + 'lolsegunda/temporada/matches')
+      axios.get(API_BASE + 'csgo/temporada/matches')
+      // axios.get(API_BASE + 'lol/copa/matches'),
+      // axios.get(API_BASE + 'lolsegunda/temporada/matches')
     ]
     return Promise.all(promises)
       .then((responses) => {
@@ -92,6 +93,14 @@ export default {
           'info': response.data
         }
         return ladder
+      })
+  },
+  getNextMatchesByTeam (game, teamId) {
+    return this.getMatches()
+      .then((matches) => {
+        return matches.filter((match) => {
+          return match.game === game && (match.team_a.id === teamId || match.team_b.id === teamId) && moment(match.start_date).isAfter(moment())
+        })
       })
   }
 }

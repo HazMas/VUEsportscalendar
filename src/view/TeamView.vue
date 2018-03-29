@@ -28,14 +28,22 @@
 
       <div class="team-view__social">
         <div v-for="(url, social) in team.social" :key="social" class="team-view__social-item">
-          <a :href="url">
-            {{social}}
+          <a :href="url" v-if="url" class="team-view__social-item-link">
+            <span v-if="social !== 'homepage'" :class="'icon-'+social"></span>
+            <img v-else :src="'http://www.google.com/s2/favicons?domain_url='+url"/>
           </a>
         </div>
       </div>
 
+      <h1>
+        Clasificación
+      </h1>
       <ladders :competition="competition" :game="game"></ladders>
+      <h1>
+        Jugadores
+      </h1>
       <players :competition="competition" :game="game" :teamData="team"></players>
+      <next-match-list :competition="competition" :game="game" :team="team"></next-match-list>
     </div>
   </div>
 </template>
@@ -47,6 +55,7 @@ import esl from '@/api/esl'
 import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
 import Players from '@/components/Players'
+import NextMatchList from '@/components/NextMatchList'
 
 export default {
   name: 'team-view',
@@ -91,7 +100,8 @@ export default {
   components: {
     Loader,
     Ladders,
-    Players
+    Players,
+    NextMatchList
   }
 }
 </script>
@@ -129,6 +139,12 @@ export default {
 
 .team-view__event-competition {
   cursor: pointer;
+}
+
+
+.team-view__social-item-link {
+  color: white;
+  text-decoration: none;
 }
 
 .team-view__back {
