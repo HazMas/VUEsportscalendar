@@ -3,6 +3,9 @@
     <loader v-if="loading">
     </loader>
     <div class="players" v-else>
+      <h1>
+        Próximos partidos
+      </h1>
       <next-match-item v-for="match in matches" :key="match.id" :match="match" class="player-row">
       </next-match-item>
     </div>
@@ -59,37 +62,6 @@ export default {
 .players {
   margin-top: 30px;
   margin-bottom: 30px;
-  padding: 0 6%;
-}
-.player-row {
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,.2)
-}
-.player {
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
-  border-radius: 100px;
-  border: 3px solid white;
-  background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
-}
-.player-picname{
-  display: flex;
-  align-items: center;
-}
-.player-nick {
-  font-weight: lighter;
-}
-.player-img {
-  width: 100%;
-}
-.player-name {
-  display: flex;
-  flex-direction: column;
-  padding-left: 15px;
+  padding-left: 6%;
 }
 </style>
