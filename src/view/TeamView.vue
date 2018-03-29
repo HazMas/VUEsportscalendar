@@ -37,6 +37,7 @@
 
       <ladders :competition="competition" :game="game"></ladders>
       <players :competition="competition" :game="game" :teamData="team"></players>
+      <next-match-list :competition="competition" :game="game" :team="team"></next-match-list>
     </div>
   </div>
 </template>
@@ -48,6 +49,7 @@ import esl from '@/api/esl'
 import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
 import Players from '@/components/Players'
+import NextMatchList from '@/components/NextMatchList'
 
 export default {
   name: 'team-view',
@@ -92,7 +94,8 @@ export default {
   components: {
     Loader,
     Ladders,
-    Players
+    Players,
+    NextMatchList
   }
 }
 </script>
