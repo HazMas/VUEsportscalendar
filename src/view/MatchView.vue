@@ -5,7 +5,7 @@
     <div v-else>
       <div class="match-view__head-description">
         <div class="match-view__header">
-          <div>
+          <div @click="$router.back()" class="match-view__back">
             <span class="icon-back"></span>
           </div>
           <h1 class="match-view">
@@ -301,6 +301,10 @@ export default {
 }
 .match-view__live-link-img {
   width: 100%;
+}
+
+.match-view__back {
+  cursor: pointer;
 }
 
 </style>
