@@ -29,7 +29,12 @@
       </span>
     </div>
     <div class="match-item__result" v-if="isScheduled(match)">
-      {{match | startTime}} h
+      <div>
+        {{match | startFullDate}}
+      </div> 
+      <div>
+        {{match | startTime}} h
+      </div>
     </div>
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_a.name">
@@ -38,7 +43,7 @@
 </template>
 
 <script>
-import {isScheduled, isLive, isFinished, startTime} from '@/helpers/MatchHelpers'
+import {isScheduled, isLive, isFinished, startTime, startFullDate} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
@@ -67,7 +72,8 @@ export default {
     isFinished
   },
   filters: {
-    startTime
+    startTime,
+    startFullDate
   }
 }
 </script>
@@ -141,14 +147,15 @@ export default {
   }
   .match-item__team-shield-img {
     height: 76px;
-     -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
   .match-item__result {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     color: #fff;
-    font-size: 2em;
+    font-size: 1em;
     white-space: nowrap;
   }
 </style>
