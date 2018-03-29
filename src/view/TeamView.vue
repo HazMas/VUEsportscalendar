@@ -29,8 +29,9 @@
 
       <div class="team-view__social">
         <div v-for="(url, social) in team.social" :key="social" class="team-view__social-item">
-          <a :href="url">
-            {{social}}
+          <a :href="url" v-if="url" class="team-view__social-item-link">
+            <span v-if="social !== 'homepage'" :class="'icon-'+social"></span>
+            <img v-else :src="'http://www.google.com/s2/favicons?domain_url='+url"/>
           </a>
         </div>
       </div>
@@ -104,7 +105,7 @@ export default {
 .team-view__head-description {
   background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }
-.match-view__header {
+.team-view__header {
   display:flex;
   align-items: center;
   justify-content: space-between;
@@ -133,6 +134,11 @@ export default {
 
 .team-view__event-competition {
   cursor: pointer;
+}
+
+.team-view__social-item-link {
+  color: white;
+  text-decoration: none;
 }
 
 </style>
