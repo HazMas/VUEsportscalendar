@@ -36,13 +36,13 @@ export default {
       if (this.competition === 'superliga-orange') {
         lvp.getNextMatchesByTeam(this.game, this.team.id)
           .then((matches) => {
-            this.matches = matches
+            this.matches = matches.slice(0, 5)
             this.loading = false
           })
       } else if (this.competition === 'esl-masters') {
         esl.getNextMatchesByTeam(this.game, this.team.id)
           .then((matches) => {
-            this.matches = matches
+            this.matches = matches.slice(0, 5)
             this.loading = false
           })
       }
