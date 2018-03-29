@@ -14,18 +14,25 @@
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
     </div>
-    <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
-      <div class="match-item__result-a">
-        {{match.result_a}}
+    <div class="match-item__scoreboard" v-if="isFinished(match) || isLive(match)">
+      <div class="match-item__result">
+        <div class="match-item__result-a">
+          {{match.result_a}}
+        </div>
+        <span class="match-item__separator">
+          -
+        </span>
+        <div class="match-item__result-b">
+          {{match.result_b}}
+        </div>
       </div>
-      <span class="match-item__separator">
-        -
-      </span>
-      <div class="match-item__result-b">
-        {{match.result_b}}
-      </div>
-      <span v-if="isLive(match)">
-        En juego
+      <span class="match-item__live" v-if="isLive(match)">
+        <span>
+          <img class="dot-live" src=/static/img/live/dot.svg alt="en directo">
+        </span>
+        <span>
+          En juego
+        </span>
       </span>
     </div>
     <div class="match-item__result" v-if="isScheduled(match)">
@@ -95,6 +102,10 @@ export default {
     flex-direction: column;
     color: transparent;
   }
+  .match-item__live {
+    display:flex;
+    align-items: center;
+  }
   .match-item__event--clash {
     box-shadow: inset -3px 0 0 0 #5185E0;
   }
@@ -142,6 +153,15 @@ export default {
   .match-item__team-shield-img {
     height: 76px;
      -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+  }
+  .match-item__scoreboard {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dot-live{
+    padding-right: 5px;
   }
   .match-item__result {
     display: flex;
