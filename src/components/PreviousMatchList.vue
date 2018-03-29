@@ -4,7 +4,7 @@
     </loader>
     <div class="players" v-else>
       <h1>
-        Próximos partidos
+        Últimos partidos
       </h1>
       <match-item v-for="match in matches" :key="match.id" :match="match" class="player-row">
       </match-item>
@@ -20,7 +20,7 @@ import Loader from '@/components/Loader'
 import MatchItem from '@/components/MatchItem'
 
 export default {
-  name: 'next-match-list',
+  name: 'previous-match-list',
   props: ['competition', 'game', 'team'],
   created () {
     this.fetchData()
@@ -34,13 +34,13 @@ export default {
   methods: {
     fetchData () {
       if (this.competition === 'superliga-orange') {
-        lvp.getNextMatchesByTeam(this.game, this.team.id)
+        lvp.getPreviousMatchesByTeam(this.game, this.team.id)
           .then((matches) => {
             this.matches = matches.slice(0, 5)
             this.loading = false
           })
       } else if (this.competition === 'esl-masters') {
-        esl.getNextMatchesByTeam(this.game, this.team.id)
+        esl.getPreviousMatchesByTeam(this.game, this.team.id)
           .then((matches) => {
             this.matches = matches.slice(0, 5)
             this.loading = false

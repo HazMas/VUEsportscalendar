@@ -94,6 +94,14 @@ export default {
           return match.game === game && (match.team_a.id === teamId || match.team_b.id === teamId) && moment(match.start_date).isAfter(moment(), 'days')
         })
       })
+  },
+  getPreviousMatchesByTeam (game, teamId) {
+    return this.getMatches()
+      .then((matches) => {
+        return matches.filter((match) => {
+          return match.game === game && (match.team_a.id === teamId || match.team_b.id === teamId) && moment(match.start_date).isBefore(moment(), 'days')
+        })
+      })
   }
 }
 
