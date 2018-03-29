@@ -62,6 +62,10 @@ export default {
 .players {
   margin-top: 30px;
   margin-bottom: 30px;
-  padding-left: 6%;
+  padding:0 6%;
+}
+.player-row {
+  overflow: hidden;
+  border-radius: 10px;
 }
 </style>
