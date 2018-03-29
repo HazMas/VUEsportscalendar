@@ -3,10 +3,9 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
-
       <div class="team-view__head-description">
-        <div class="match-view__header">
-          <div>
+        <div class="team-view__header">
+          <div @click="$router.back()" class="team-view__back">
             <span class="icon-back"></span>
           </div>
           <h1 class="team-view">
@@ -136,9 +135,14 @@ export default {
   cursor: pointer;
 }
 
+
 .team-view__social-item-link {
   color: white;
   text-decoration: none;
+}
+
+.team-view__back {
+  cursor: pointer;
 }
 
 </style>
