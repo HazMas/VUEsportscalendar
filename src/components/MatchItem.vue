@@ -28,7 +28,7 @@
         En juego
       </span>
     </div>
-    <div class="match-item__result" v-if="isScheduled(match)">
+    <div class="match-item__result--no-start" v-if="isScheduled(match)">
       <div>
         {{match | startFullDate}}
       </div> 
@@ -149,13 +149,21 @@ export default {
     height: 76px;
     filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
-  .match-item__result {
+  .match-item__result--no-start {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #fff;
     font-size: 1em;
+    white-space: nowrap;
+  }
+  .match-item__result {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #fff;
+    font-size: 2em;
     white-space: nowrap;
   }
 </style>

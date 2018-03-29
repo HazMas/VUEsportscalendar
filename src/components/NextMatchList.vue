@@ -6,8 +6,8 @@
       <h1>
         Próximos partidos
       </h1>
-      <next-match-item v-for="match in matches" :key="match.id" :match="match" class="player-row">
-      </next-match-item>
+      <match-item v-for="match in matches" :key="match.id" :match="match" class="player-row">
+      </match-item>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import lvp from '@/api/lvp'
 import esl from '@/api/esl'
 
 import Loader from '@/components/Loader'
-import NextMatchItem from '@/components/NextMatchItem'
+import MatchItem from '@/components/MatchItem'
 
 export default {
   name: 'next-match-list',
@@ -53,7 +53,7 @@ export default {
   },
   components: {
     Loader,
-    NextMatchItem
+    MatchItem
   }
 }
 </script>
