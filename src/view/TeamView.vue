@@ -44,6 +44,7 @@
       </h1>
       <players :competition="competition" :game="game" :teamData="team"></players>
       <next-match-list :competition="competition" :game="game" :team="team"></next-match-list>
+      <previous-match-list :competition="competition" :game="game" :team="team"></previous-match-list>
     </div>
   </div>
 </template>
@@ -56,6 +57,7 @@ import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
 import Players from '@/components/Players'
 import NextMatchList from '@/components/NextMatchList'
+import PreviousMatchList from '@/components/PreviousMatchList'
 
 export default {
   name: 'team-view',
@@ -101,7 +103,8 @@ export default {
     Loader,
     Ladders,
     Players,
-    NextMatchList
+    NextMatchList,
+    PreviousMatchList
   }
 }
 </script>
