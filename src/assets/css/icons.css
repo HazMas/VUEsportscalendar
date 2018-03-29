@@ -23,7 +23,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-select-down:before {
+  content: "\e90c";
+}
 .icon-youtube:before {
   content: "\e907";
 }
