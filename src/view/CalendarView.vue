@@ -3,6 +3,7 @@
     <div class="calendar-view">
       <div class="month-item" @click="showCalendar = !showCalendar">
         {{month}}
+        <span class="icon-select-down"></span>
       </div>
       <div class="calendar-tabs">
         <calendar-tab v-for="tab in tabs" :key="tab.title" :tab="tab"></calendar-tab>
@@ -109,8 +110,16 @@ export default {
     justify-content: space-between;
   }
   .month-item {
-    font-size: 1.8em;
+    font-size: 1.3em;
     padding-right: 2%;
+    display: flex;
+    align-items: center;
+    cursor:pointer;
+  }
+  .icon-select-down {
+    font-size: 0.4em;
+    margin-top: 1em;
+    padding-left: 0.3em;
   }
   .match-item {
     margin:0 0 0 6%;
@@ -122,7 +131,14 @@ export default {
     text-align: center;
   }
   .calendar-view__date-picker {
-    display: block;
+    display: flex;
+    width: 100%;
+    padding: 0 6%;
+    background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
+    border: none !important;
+    color: #fff !important;
+  }
+  .c-day-content {
   }
 </style>
 
