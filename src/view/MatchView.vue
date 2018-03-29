@@ -11,11 +11,13 @@
           <h1 class="match-view">
             {{match | startFullDate}}
           </h1>
-          <add-to-calendar class="match-view__notification" v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
-              <google-calendar class="match-view__calendar-link">
-                <span class="icon-bell-line"></span>
-              </google-calendar>
-          </add-to-calendar>
+          <span>
+            <add-to-calendar class="match-view__notification" v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
+                <google-calendar class="match-view__calendar-link">
+                  <span class="icon-bell-line"></span>
+                </google-calendar>
+            </add-to-calendar>
+          </span>
         </div>
 
         <div class="match-view__teams">

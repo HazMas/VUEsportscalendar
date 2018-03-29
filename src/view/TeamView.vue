@@ -3,19 +3,30 @@
     <loader v-if="loading">
     </loader>
     <div v-else>
-      <div class="team-view__info">
-        <img class="team-view__shield-img" v-lazy="team.image_url" :alt="team.name">
-        <span>
-          {{team.name}}
-        </span>
+
+      <div class="team-view__head-description">
+        <div class="match-view__header">
+          <div>
+            <span class="icon-back"></span>
+          </div>
+          <h1 class="team-view">
+            {{team.name}}
+          </h1>
+          <span></span>
+        </div>
+        <div class="team-view__team">
+          <img class="team-view__shield-img" v-lazy="team.image_url" :alt="team.name">
+        </div>
+      </div>
+      <div class="team-view__competition-info">
         <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" tag="div" class="team-view__event-competition">
           <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
         </router-link>
-        <span class="team-view__event-game">
+         <span class="team-view__event-game">
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
       </div>
-      
+
       <div class="team-view__social">
         <div v-for="(url, social) in team.social" :key="social" class="team-view__social-item">
           <a :href="url">
@@ -23,6 +34,7 @@
           </a>
         </div>
       </div>
+
       <ladders :competition="competition" :game="game"></ladders>
       <players :competition="competition" :game="game" :teamData="team"></players>
     </div>
@@ -86,6 +98,35 @@ export default {
 </script>
 
 <style lang="scss">
+.team-view__head-description {
+  background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
+}
+.match-view__header {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+}
+.team-view__team {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  padding-bottom: 70px;
+}
+.team-view__competition-info {
+  margin-top: -50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.team-view__social{
+  margin: 0 auto;
+  width: 70%;
+  max-width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .team-view__event-competition {
   cursor: pointer;
