@@ -27,10 +27,10 @@
       </div>
 
       <div class="team-view__social">
-        <div v-for="(url, social) in team.social" :key="social" class="team-view__social-item">
-          <a :href="url" v-if="url" class="team-view__social-item-link">
-            <span v-if="social !== 'homepage'" :class="'icon-'+social"></span>
-            <img v-else :src="'http://www.google.com/s2/favicons?domain_url='+url"/>
+        <div v-for="social in teamSocial" :key="social.name" class="team-view__social-item">
+          <a :href="social.url" class="team-view__social-item-link" :alt="social.name">
+            <span v-if="social.name !== 'homepage'" :class="'icon-'+social.name"></span>
+            <img v-else :src="'http://www.google.com/s2/favicons?domain_url='+social.url"/>
           </a>
         </div>
       </div>
@@ -75,6 +75,20 @@ export default {
       title: 'cargando...',
       loading: true,
       team: undefined
+    }
+  },
+  computed: {
+    teamSocial () {
+      return Object.keys(this.team.social)
+        .filter((social) => {
+          return this.team.social[social]
+        })
+        .map((social) => {
+          return {
+            'name': social,
+            'url': this.team.social[social]
+          }
+        })
     }
   },
   methods: {
