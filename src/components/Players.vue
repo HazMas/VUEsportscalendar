@@ -106,6 +106,9 @@ export default {
 .player-img {
   width: 100%;
 }
+.team-img {
+  width: 100%;
+}
 .player-name {
   display: flex;
   flex-direction: column;
