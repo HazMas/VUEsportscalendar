@@ -90,10 +90,11 @@ export default {
 .player {
   height: 50px;
   width: 50px;
+  min-width: 50px;
   overflow: hidden;
   border-radius: 100px;
   border: 3px solid white;
-  background-color: #fff;
+  background-color: #667098;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
 }
 .player-picname{
@@ -105,9 +106,14 @@ export default {
 }
 .player-img {
   width: 100%;
+  background-color: #fff;
 }
 .team-img {
-  width: 100%;
+  width: 90%;
+  filter: grayscale(100%);
+  opacity:0.7;
+  padding-left: 5%;
+  padding-top: 5%;
 }
 .player-name {
   display: flex;
