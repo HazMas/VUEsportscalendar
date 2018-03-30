@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
     </div>
     <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
       <div class="match-item__result-a">
@@ -37,13 +37,13 @@
       </div>
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="match.team_b.image_url" :alt="match.team_a.name">
     </div>
   </router-link>
 </template>
 
 <script>
-import {isScheduled, isLive, isFinished, startTime, startFullDate} from '@/helpers/MatchHelpers'
+import {isScheduled, isLive, isFinished, startTime, startFullDate, isTeamLoser} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
@@ -69,7 +69,8 @@ export default {
   methods: {
     isScheduled,
     isLive,
-    isFinished
+    isFinished,
+    isTeamLoser
   },
   filters: {
     startTime,
@@ -165,6 +166,9 @@ export default {
     color: #fff;
     font-size: 2em;
     white-space: nowrap;
+  }
+  .match-item__team-shield-img--loser {
+    filter: grayscale(100%);
   }
 </style>
 

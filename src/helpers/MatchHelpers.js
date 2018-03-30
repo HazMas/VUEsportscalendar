@@ -20,4 +20,16 @@ function startTime (match) {
   return moment(match.start_date).format('HH:mm')
 }
 
-export {isScheduled, isFinished, isLive, startTime, startFullDate}
+function isTeamLoser (match, teamId) {
+  if (!isFinished(match)) {
+    return false
+  }
+
+  if (match.team_a.id === teamId) {
+    return match.result_a < match.result_b
+  } else {
+    return match.result_b < match.result_a
+  }
+}
+
+export {isScheduled, isFinished, isLive, startTime, startFullDate, isTeamLoser}
