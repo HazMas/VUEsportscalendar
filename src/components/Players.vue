@@ -32,7 +32,7 @@ import esl from '@/api/esl'
 import Loader from '@/components/Loader'
 
 export default {
-  name: 'team',
+  name: 'players',
   props: ['competition', 'game', 'teamData'],
   created () {
     this.fetchData()
