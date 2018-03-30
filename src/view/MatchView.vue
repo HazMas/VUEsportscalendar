@@ -35,7 +35,7 @@
               {{match.result_b}}
             </div>
             <span v-if="isLive(match)">
-              En juego
+              &nbsp;<img src=/static/img/live/dot.svg alt="en directo">
             </span>
           </div>
           <div class="match-view__result" v-if="isScheduled(match)">
