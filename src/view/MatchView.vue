@@ -80,8 +80,17 @@
           </div>
         </a>
       </div>
+      <h2 class="match-view__live-title">
+        Clasificación
+      </h2>
       <ladders :competition="competition" :game="game"></ladders>
+      <h2 class="match-view__live-title">
+        {{match.team_a.name}}
+      </h2>
       <players :competition="competition" :game="game" :teamData="match.team_a"></players>
+      <h2 class="match-view__live-title">
+        {{match.team_b.name}}
+      </h2>
       <players :competition="competition" :game="game" :teamData="match.team_b"></players>
     </div>
   </div>
