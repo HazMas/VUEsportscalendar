@@ -22,7 +22,7 @@
 
         <div class="match-view__teams">
           <router-link :to="{name: 'team-view', params: {teamId: match.team_a.id}}" tag="div" class="match-view__team match-view__team--left">
-            <img class="match-view__team-shield-img" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
+            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
           </router-link>
           <div class="match-view__result" v-if="isFinished(match) || isLive(match)">
             <div class="match-view__result-a">
@@ -42,7 +42,7 @@
             {{match | startTime}} h
           </div>
           <router-link :to="{name: 'team-view', params: {teamId: match.team_b.id}}" tag="div" class="match-view__team match-view__team--right">
-            <img class="match-view__team-shield-img" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
+            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
           </router-link>
         </div>
       </div>
@@ -108,7 +108,7 @@ import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
 import Players from '@/components/Players'
 
-import {isScheduled, isFinished, isLive, startTime, startFullDate} from '@/helpers/MatchHelpers'
+import {isScheduled, isFinished, isLive, startTime, startFullDate, isTeamLoser} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-view',
@@ -151,6 +151,7 @@ export default {
     isScheduled,
     isFinished,
     isLive,
+    isTeamLoser,
     fetchData () {
       if (this.competition === 'superliga-orange') {
         lvp.getMatch(this.game, this.matchId)
@@ -282,8 +283,6 @@ export default {
   margin: 0 16px 0 16px;
   border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-.match-view__competition-info-time-title{
-}
 .match-view__competition-info-time-countdown {
   font-weight: lighter;
 }
@@ -314,6 +313,10 @@ export default {
 
 .match-view__back {
   cursor: pointer;
+}
+
+.match-item__team-shield-img--loser {
+  filter: grayscale(100%);
 }
 
 </style>
