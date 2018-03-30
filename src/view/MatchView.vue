@@ -29,7 +29,7 @@
               {{match.result_a}}
             </div>
             <span class="match-view__separator">
-              vs
+              -
             </span>
             <div class="match-view__result-b">
               {{match.result_b}}
