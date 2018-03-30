@@ -131,6 +131,10 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
+.team-view__shield-img {
+  width:70%;
+  max-width: 200px;
+}
 .team-view__social{
   margin: 0 auto;
   width: 70%;
