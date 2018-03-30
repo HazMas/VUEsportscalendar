@@ -68,7 +68,7 @@
         </h2>
         <a class="match-view__live-link" v-for="live in match.live" :key="live.url" :href="live.url" target="_blank">
           <div>
-            <div class="match-view__live-link-live">
+            <div class="match-view__live-link-live" v-if="isLive(match)">
               <span>
                 <img src=/static/img/live/dot.svg alt="en directo">
               </span>
