@@ -6,7 +6,7 @@
       <div v-for="player in team.players" :key="player.id" class="player-row">
         <div class="player-picname">
           <div class="player">
-            <img class="player-img" v-lazy="player.image_url" :alt="player.name">
+            <img class="player-img" v-lazy="{ 'src': player.image_url, 'error': team.image_url }" :alt="player.name">
           </div>
           <span class="player-name">
             {{player.name}}
