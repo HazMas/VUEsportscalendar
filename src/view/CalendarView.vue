@@ -1,5 +1,16 @@
 <template>
   <div>
+    <header>
+      <span></span>
+      <h1>
+        <img class="header__logo" src="../assets/img/logotype-esc.svg" alt="Esports calendar, calendario de e-sports">
+      </h1>
+      <detect-network class="offline-dino">
+        <div slot="offline">
+          <img src="@/assets/img/dino.svg" alt="Offline dinosaur">
+        </div>
+      </detect-network>
+    </header>
     <div class="calendar-view">
       <div class="month-item" @click="showCalendar = !showCalendar">
         {{month}}
