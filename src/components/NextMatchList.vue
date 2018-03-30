@@ -67,5 +67,6 @@ export default {
 .player-row {
   overflow: hidden;
   border-radius: 10px;
+  margin-left: 0;
 }
 </style>
