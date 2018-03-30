@@ -29,13 +29,13 @@
               {{match.result_a}}
             </div>
             <span class="match-view__separator">
-              vs
+              -
             </span>
             <div class="match-view__result-b">
               {{match.result_b}}
             </div>
             <span v-if="isLive(match)">
-              En juego
+              &nbsp;<img src=/static/img/live/dot.svg alt="en directo">
             </span>
           </div>
           <div class="match-view__result" v-if="isScheduled(match)">
@@ -68,7 +68,7 @@
         </h2>
         <a class="match-view__live-link" v-for="live in match.live" :key="live.url" :href="live.url" target="_blank">
           <div>
-            <div class="match-view__live-link-live">
+            <div class="match-view__live-link-live" v-if="isLive(match)">
               <span>
                 <img src=/static/img/live/dot.svg alt="en directo">
               </span>
@@ -80,8 +80,17 @@
           </div>
         </a>
       </div>
+      <h2 class="match-view__live-title">
+        Clasificación
+      </h2>
       <ladders :competition="competition" :game="game"></ladders>
+      <h2 class="match-view__live-title">
+        {{match.team_a.name}}
+      </h2>
       <players :competition="competition" :game="game" :teamData="match.team_a"></players>
+      <h2 class="match-view__live-title">
+        {{match.team_b.name}}
+      </h2>
       <players :competition="competition" :game="game" :teamData="match.team_b"></players>
     </div>
   </div>
