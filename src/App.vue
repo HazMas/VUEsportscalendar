@@ -9,8 +9,6 @@
 
 <script>
 import '@/assets/css/icons.css'
-import detectNetwork from 'v-offline'
-
 import WebFooter from '@/components/WebFooter'
 
 export default {
@@ -20,7 +18,6 @@ export default {
     titleTemplate: '%s | E-Sports Calendar'
   },
   components: {
-    detectNetwork,
     WebFooter
   }
 }

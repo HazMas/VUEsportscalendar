@@ -32,8 +32,11 @@
 
 <script>
 import Vue from 'vue'
+import detectNetwork from 'v-offline'
+
 import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
+
 import { mapGetters } from 'vuex'
 import moment from 'moment'
 
@@ -76,6 +79,7 @@ export default {
     CalendarMatchItem,
     CalendarMatchNullItem,
     CalendarTab,
+    detectNetwork,
     Loader
   },
   metaInfo: {
