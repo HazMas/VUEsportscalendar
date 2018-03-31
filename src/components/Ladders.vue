@@ -6,7 +6,7 @@
       <router-link tag="div" :to="{name: 'team-view', params: {competition: competition, game: game, teamId: ladder.team.id}}" class="ladder-item" v-for="ladder in ladders.info" :key="ladder.team.id">
         <span class="ladder-team">
           {{ladder.rank}}
-          <img class="ladders__shield-img" v-lazy="ladder.team.image_url" :alt="ladder.team.name">
+          <img class="ladders__shield-img" v-lazy="{ 'src': ladder.team.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="ladder.team.name">
           {{ladder.team.name}}
         </span>
         <span class="ladder-data">
