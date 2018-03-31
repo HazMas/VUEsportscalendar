@@ -1,0 +1,6 @@
+{
+  "appId": "esc.e_sportscalendar_v2",
+  "appName": "E-Sports Calendar",
+  "bundledWebRuntime": false,
+  "webDir": "dist"
+}
