@@ -14,7 +14,7 @@
           <span></span>
         </div>
         <div class="team-view__team">
-          <img class="team-view__shield-img" v-lazy="team.image_url" :alt="team.name">
+          <img class="team-view__shield-img" v-lazy="{ 'src': team.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="team.name">
         </div>
       </div>
       <div class="team-view__competition-info">

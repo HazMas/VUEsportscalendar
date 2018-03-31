@@ -22,7 +22,7 @@
 
         <div class="match-view__teams">
           <router-link :to="{name: 'team-view', params: {teamId: match.team_a.id}}" tag="div" class="match-view__team match-view__team--left">
-            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="match.team_a.image_url" :alt="match.team_a.name">
+            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="{ 'src': match.team_a.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_a.name">
           </router-link>
           <div class="match-view__result" v-if="isFinished(match) || isLive(match)">
             <div class="match-view__result-a">
@@ -42,7 +42,7 @@
             {{match | startTime}} h
           </div>
           <router-link :to="{name: 'team-view', params: {teamId: match.team_b.id}}" tag="div" class="match-view__team match-view__team--right">
-            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="match.team_b.image_url" :alt="match.team_b.name">
+            <img class="match-view__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="{ 'src': match.team_b.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_b.name">
           </router-link>
         </div>
       </div>
