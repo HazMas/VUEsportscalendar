@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="53px" height="58px" viewBox="0 0 53 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Fill 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path fill="url(#skyGradient)" d="M52.1401058,10.5542981 C48.1379494,9.25670891 46.016232,8.25515222 41.7703785,7.5743973 C41.1767572,6.30477338 40.3789463,5.1703816 39.3727129,4.1826078 C36.9504558,1.80475961 31.6614816,0 27.6278804,0 C23.7134066,0 18.517759,1.72685632 16.1624229,3.94969693 C15.1616319,4.89332553 14.3616037,5.98976443 13.766773,7.2108486 C8.6293789,7.87242733 5.65502383,8.99962805 0.859894195,10.5542981 C0.287437675,13.7523281 0,17.0995729 0,20.5538848 C0,35.5630528 10.4052035,50.9127979 26.4998992,58 C42.5947965,50.9127979 53,35.5630528 53,20.5538848 C53,17.0995729 52.7125623,13.7523281 52.1401058,10.5542981" id="Fill-4"></path>
+    </g>
+    <defs>
+        <linearGradient id="skyGradient" x1="50%" y1="100%">
+          <stop offset="0%" stop-color="#7E8BBC" stop-opacity="1s">
+            <animate attributeName="stop-color" values="#7E8BBC;#B5BFDF;#7E8BBC;" dur="1s" repeatCount="indefinite" />
+          </stop>
+          <stop offset="100%" stop-color="#7E8BBC" stop-opacity="1s">
+            <animate attributeName="stop-color" values="#B5BFDF;#7E8BBC;#B5BFDF;" dur="1s" repeatCount="indefinite" />
+            <animate attributeName="offset" values=".95;.80;.60;.40;.20;0;.20;.40;.60;.80;.95" dur="1s" repeatCount="indefinite" />
+          </stop>
+        </linearGradient>
+</defs>
+</svg>

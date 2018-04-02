@@ -1,32 +1,23 @@
 <template>
   <div id="app">
-    <header>
-      <span></span>
-      <h1>
-        E-Sports Calendar
-      </h1>
-      <detect-network class="offline-dino">
-        <div slot="offline">
-          <img src="static/img/icons/dino.svg" alt="Offline dinosaur">
-        </div>
-      </detect-network>
-    </header>
     <main>
-      <router-view></router-view>
+      <router-view :key="$route.fullPath"></router-view>
     </main>
     <web-footer class="web-footer"></web-footer>
   </div>
 </template>
 
 <script>
-import detectNetwork from 'v-offline'
-
-import WebFooter from './components/WebFooter'
+import '@/assets/css/icons.css'
+import WebFooter from '@/components/WebFooter'
 
 export default {
   name: 'app',
+  metaInfo: {
+    title: 'Inicio',
+    titleTemplate: '%s | E-Sports Calendar'
+  },
   components: {
-    detectNetwork,
     WebFooter
   }
 }
@@ -34,9 +25,22 @@ export default {
 
 <style lang="scss">
 header {
-display: grid;
-grid-template-columns: 1fr 3fr 1fr;
-padding:0 6% 0 6%;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  padding:0 6% 0 6%;
+}
+.header__logo {
+  width: 100%;
+  max-width: 200px;
+}
+body {
+  background-image: linear-gradient(135deg, #424E75 0%, #282949 45%, #262C4A 100%);
+  margin: 0;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Oswald', sans-serif;
+  color: #fff;
 }
 h1 {
   text-align: center;

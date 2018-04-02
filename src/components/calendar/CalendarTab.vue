@@ -1,16 +1,19 @@
-<template>
-      <!-- {{month}} -->
-      <button class="calendar-tab__day" :class="{'calendar-tab--active': isActive}"  @click="filter" :disabled="isDisabled">
-          <span class="calendar-tab__day-week">{{dayOfWeek}}</span>
-          <span class="calendar-tab__day-month">{{dayOfMonth}}</span>
-      </button>
+<template>  
+  <button class="calendar-tab__day" :class="{'calendar-tab--active': isActive}"  @click="filter">
+    <span class="calendar-tab__day-week" :class="{'calendar-tab__day-month--disabled': isDisabled}">
+      {{dayOfWeek}}
+    </span>
+    <span class="calendar-tab__day-month" :class="{'calendar-tab__day-month--disabled': isDisabled}">
+      {{dayOfMonth}}
+    </span>
+  </button>
 </template>
 
 <script>
 import moment from 'moment'
 import { mapGetters } from 'vuex'
 
-import { FILTER_MATCHES } from '../store/mutation-types'
+import { FILTER_MATCHES } from '@/store/mutation-types'
 
 export default {
   name: 'calendar-tab',
@@ -24,9 +27,6 @@ export default {
     },
     dayOfWeek () {
       return moment(this.tab.date).locale('es').format('ddd')
-    },
-    month () {
-      return moment(this.tab.date).locale('es').format('MMM')
     },
     dayOfMonth () {
       return moment(this.tab.date).locale('es').format('DD')
@@ -58,9 +58,8 @@ export default {
   padding-bottom: 10px;
   margin-bottom: -2px;
 }
-button:disabled .calendar-tab__day-month {
+.calendar-tab__day-month--disabled {
   opacity: 0.3;
-  cursor: auto;
 }
 .calendar-tab__day-week {
   font-size: 0.7em;

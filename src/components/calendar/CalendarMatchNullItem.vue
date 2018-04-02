@@ -1,5 +1,5 @@
 <template>
-  <router-link tag="div" :to="{ name: 'match-view', params: { competition: match.competition, game: match.game, matchId: match.id }}" class="match-item">
+  <div class="match-item">
     <div :class="matchItemEventClasses">
       <span :class="matchItemEventRoundClasses">
         J{{match.round}}
@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="{ 'src': match.team_a.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" v-lazy="require('@/assets/img/null-team.png')" :alt="match.team_a.name">
     </div>
     <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
       <div class="match-item__result-a">
@@ -28,22 +28,17 @@
         En juego
       </span>
     </div>
-    <div class="match-item__result--no-start" v-if="isScheduled(match)">
-      <div>
-        {{match | startFullDate}}
-      </div> 
-      <div>
-        {{match | startTime}} h
-      </div>
+    <div class="match-item__result" v-if="isScheduled(match)">
+      {{match | startTime}} h
     </div>
     <div class="match-item__team-shield">
-      <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="{ 'src': match.team_b.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_a.name">
+      <img class="match-item__team-shield-img" v-lazy="require('@/assets/img/null-team.png')" :alt="match.team_a.name">
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
-import {isScheduled, isLive, isFinished, startTime, startFullDate, isTeamLoser} from '@/helpers/MatchHelpers'
+import {isScheduled, isLive, isFinished, startTime} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
@@ -69,12 +64,10 @@ export default {
   methods: {
     isScheduled,
     isLive,
-    isFinished,
-    isTeamLoser
+    isFinished
   },
   filters: {
-    startTime,
-    startFullDate
+    startTime
   }
 }
 </script>
@@ -91,7 +84,6 @@ export default {
     background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 0%, #323D62 100%);
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-radius: 6px 0 0 6px;
-    cursor: pointer;
   }
   .match-item__event {
     background: #354065;
@@ -148,16 +140,7 @@ export default {
   }
   .match-item__team-shield-img {
     height: 76px;
-    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
-  }
-  .match-item__result--no-start {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1em;
-    white-space: nowrap;
+     -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
   .match-item__result {
     display: flex;
@@ -166,9 +149,6 @@ export default {
     color: #fff;
     font-size: 2em;
     white-space: nowrap;
-  }
-  .match-item__team-shield-img--loser {
-    filter: grayscale(100%);
   }
 </style>
 

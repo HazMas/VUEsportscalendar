@@ -14,27 +14,29 @@
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_a.id)}" v-lazy="{ 'src': match.team_a.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_a.name">
     </div>
-    <div class="match-item__result" v-if="isFinished(match) || isLive(match)">
-      <div class="match-item__result-a">
-        {{match.result_a}}
+    <div class="match-item__scoreboard" v-if="isFinished(match) || isLive(match)">
+      <div class="match-item__result">
+        <div class="match-item__result-a">
+          {{match.result_a}}
+        </div>
+        <span class="match-item__separator">
+          -
+        </span>
+        <div class="match-item__result-b">
+          {{match.result_b}}
+        </div>
       </div>
-      <span class="match-item__separator">
-        -
-      </span>
-      <div class="match-item__result-b">
-        {{match.result_b}}
-      </div>
-      <span v-if="isLive(match)">
-        En juego
+      <span class="match-item__live" v-if="isLive(match)">
+        <span>
+          <img class="dot-live" src=/static/img/live/dot.svg alt="en directo">
+        </span>
+        <span>
+          En juego
+        </span>
       </span>
     </div>
-    <div class="match-item__result--no-start" v-if="isScheduled(match)">
-      <div>
-        {{match | startFullDate}}
-      </div> 
-      <div>
-        {{match | startTime}} h
-      </div>
+    <div class="match-item__result" v-if="isScheduled(match)">
+      {{match | startTime}} h
     </div>
     <div class="match-item__team-shield">
       <img class="match-item__team-shield-img" :class="{'match-item__team-shield-img--loser': isTeamLoser(match, match.team_b.id)}" v-lazy="{ 'src': match.team_b.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="match.team_a.name">
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import {isScheduled, isLive, isFinished, startTime, startFullDate, isTeamLoser} from '@/helpers/MatchHelpers'
+import {isScheduled, isLive, isFinished, startTime, isTeamLoser} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'match-item',
@@ -73,8 +75,7 @@ export default {
     isTeamLoser
   },
   filters: {
-    startTime,
-    startFullDate
+    startTime
   }
 }
 </script>
@@ -101,6 +102,10 @@ export default {
     align-items: center;
     flex-direction: column;
     color: transparent;
+  }
+  .match-item__live {
+    display:flex;
+    align-items: center;
   }
   .match-item__event--clash {
     box-shadow: inset -3px 0 0 0 #5185E0;
@@ -148,16 +153,16 @@ export default {
   }
   .match-item__team-shield-img {
     height: 76px;
-    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+     -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
-  .match-item__result--no-start {
+  .match-item__scoreboard {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
-    color: #fff;
-    font-size: 1em;
-    white-space: nowrap;
+  }
+  .dot-live{
+    padding-right: 5px;
   }
   .match-item__result {
     display: flex;
@@ -167,6 +172,7 @@ export default {
     font-size: 2em;
     white-space: nowrap;
   }
+
   .match-item__team-shield-img--loser {
     filter: grayscale(100%);
   }
