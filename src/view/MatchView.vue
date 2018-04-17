@@ -187,7 +187,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .match-view__head-description {
   background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }

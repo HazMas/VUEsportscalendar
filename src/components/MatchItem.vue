@@ -31,7 +31,7 @@
     <div class="match-item__result--no-start" v-if="isScheduled(match)">
       <div>
         {{match | startFullDate}}
-      </div> 
+      </div>
       <div>
         {{match | startTime}} h
       </div>
@@ -79,7 +79,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .match-item {
     // display: flex;
     display: grid;

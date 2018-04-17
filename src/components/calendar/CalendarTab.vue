@@ -48,17 +48,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .calendar-tab__day {
   color: #fff;
-  display: flex;
-  padding-left: 2%;
-  padding-right: 2%;
-  padding-top: 2px;
+  padding: 2px 2% 10px 2%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 10px;
   margin-bottom: -2px;
   &:Hover {
     background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
@@ -75,6 +71,7 @@ export default {
   font-size: 0.7em;
   text-transform: uppercase;
   color: #7E8BBC;
+  display: block;
 }
 .calendar-tab__day-month {
   font-size: 1.8em;
