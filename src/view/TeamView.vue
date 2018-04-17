@@ -34,17 +34,17 @@
           </a>
         </div>
       </div>
-
-      <h1>
-        Clasificación
-      </h1>
-      <ladders :competition="competition" :game="game"></ladders>
       <h1>
         Jugadores
       </h1>
       <players :competition="competition" :game="game" :teamData="team"></players>
       <next-match-list :competition="competition" :game="game" :team="team"></next-match-list>
       <previous-match-list :competition="competition" :game="game" :team="team"></previous-match-list>
+      <h1>
+        Clasificación
+      </h1>
+      <ladders :competition="competition" :game="game"></ladders>
+      
     </div>
   </div>
 </template>
