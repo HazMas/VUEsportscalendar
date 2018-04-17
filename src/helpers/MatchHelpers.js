@@ -24,11 +24,10 @@ function isTeamLoser (match, teamId) {
   if (!isFinished(match)) {
     return false
   }
-
   if (match.team_a.id === teamId) {
-    return match.result_a < match.result_b
+    return parseInt(match.result_a) < parseInt(match.result_b)
   } else {
-    return match.result_b < match.result_a
+    return parseInt(match.result_b) < parseInt(match.result_a)
   }
 }
 
