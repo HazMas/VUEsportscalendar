@@ -44,7 +44,7 @@
         Clasificación
       </h1>
       <ladders :competition="competition" :game="game"></ladders>
-      
+
     </div>
   </div>
 </template>
@@ -123,7 +123,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .team-view__head-description {
   background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }
