@@ -132,7 +132,7 @@ export default {
   align-items: center;
   cursor:pointer;
   &:Hover {
-    background-color: rgba(255,255,255,.1);
+    background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
     border-radius: 6px;
   }
   &:active {

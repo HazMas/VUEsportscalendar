@@ -61,7 +61,7 @@ export default {
   padding-bottom: 10px;
   margin-bottom: -2px;
   &:Hover {
-    background-color: rgba(255,255,255,.1);
+    background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
     border-radius: 6px 6px 0 0;
   }
   &:active {
