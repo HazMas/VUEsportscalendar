@@ -5,9 +5,13 @@
     <div class="ladders" v-else>
       <router-link tag="div" :to="{name: 'team-view', params: {competition: competition, game: game, teamId: ladder.team.id}}" class="ladder-item" v-for="ladder in ladders.info" :key="ladder.team.id">
         <span class="ladder-team">
-          {{ladder.rank}}
+          <span>
+            {{ladder.rank}}
+            </span>
           <img class="ladders__shield-img" v-lazy="{ 'src': ladder.team.image_url, 'loading': require('@/assets/img/skeleton-shield.svg')}" :alt="ladder.team.name">
-          {{ladder.team.name}}
+          <span class="ladders__team-name">
+            {{ladder.team.name}}
+          </span>
         </span>
         <span class="ladder-data">
           <span class="ladder-data-title">
@@ -108,6 +112,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 50%;
 }
 .ladder-data {
   display: flex;
@@ -118,8 +123,12 @@ export default {
   font-size: 10px;
 }
 .ladders__shield-img {
-  height: 50px;
-  margin: 0 15px;
+  width: 50px;
+  margin: 0 10px;
+}
+.ladders__team-name{
+  width:60%;
+  padding-right: 3px;
 }
 
 </style>
