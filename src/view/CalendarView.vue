@@ -145,7 +145,16 @@ export default {
     padding-left: 0.3em;
 }
   .match-item {
-    margin:0 0 0 6%;
+    margin:25px 0 0 6%;
+    transition: all .3s;
+    &:Hover {
+      margin:25px 0 0 5%;
+      background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 50%, #323D62 100%) !important;
+      box-shadow: 0 6px 15px 0 rgba(0, 0, 0, .4) !important;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
   }
   .no-match-text {
     text-align: center;
