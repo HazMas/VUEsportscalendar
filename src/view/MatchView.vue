@@ -310,6 +310,15 @@ export default {
   padding-top: 18px;
   padding-bottom: 18px;
   text-decoration: none;
+  transition: all .3s;
+  &:hover {
+    background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 50%, #323D62 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
 
 }
 .match-view__live-link-live {
