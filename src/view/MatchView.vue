@@ -243,6 +243,15 @@ export default {
 .match-view__team-shield-img {
   width: 70%;
   max-width: 150px;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+  transition: all .3s;
+  &:hover{
+    filter: drop-shadow(0px 6px 6px rgba(#5F7890, 1));
+    transform: translateY(-2px);
+  }
+  &:active{
+    transform: translateY(0px);
+  }
 }
 .match-view__competition-info {
   margin-top: -50px;
