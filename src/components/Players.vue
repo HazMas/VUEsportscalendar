@@ -112,8 +112,8 @@ export default {
   width: 90%;
   filter: grayscale(100%);
   opacity:0.7;
-  padding-left: 5%;
-  padding-top: 5%;
+  margin-left: 5%;
+  margin-top: 5%;
 }
 .player-name {
   display: flex;
