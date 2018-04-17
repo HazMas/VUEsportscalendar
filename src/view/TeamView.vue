@@ -170,6 +170,13 @@ export default {
 
 .team-view__back {
   cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    transform: translateX(-2px);
+  }
+  &:active {
+    transform: translateX(-2px) translateY(1px);
+  }
 }
 
 </style>
