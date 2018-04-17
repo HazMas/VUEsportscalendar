@@ -125,12 +125,19 @@ export default {
     justify-content: space-between;
   }
 .month-item {
-  font-size: 1.8em;
   font-size: 1.3em;
-  padding-right: 2%;
+  padding: 2%;
+  margin-right: 2%;
   display: flex;
   align-items: center;
   cursor:pointer;
+  &:Hover {
+    background-color: rgba(255,255,255,.2);
+    border-radius: 6px;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
 }
 .icon-select-down {
     font-size: 0.4em;
