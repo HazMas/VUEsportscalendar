@@ -168,7 +168,7 @@ export default {
     white-space: nowrap;
   }
   .match-item__team-shield-img--loser {
-    filter: grayscale(100%);
+    filter: grayscale(100%) brightness(.8);
   }
 </style>
 
