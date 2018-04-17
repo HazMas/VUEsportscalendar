@@ -101,12 +101,14 @@ export default {
   display:flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 6%;
-  padding: 7px ;
+  padding: 7px 6%;
   border-bottom: 1px solid rgba(255,255,255,.2);
   &:hover {
     background-color: rgba(255,255,255,0.1);
   }
+}
+.ladder-item--active {
+  background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }
 .ladder-team {
   display: flex;
