@@ -132,7 +132,7 @@ export default {
   align-items: center;
   cursor:pointer;
   &:Hover {
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(255,255,255,.1);
     border-radius: 6px;
   }
   &:active {

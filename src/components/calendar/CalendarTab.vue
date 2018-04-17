@@ -1,4 +1,4 @@
-<template>  
+<template>
   <button class="calendar-tab__day" :class="{'calendar-tab--active': isActive}"  @click="filter">
     <span class="calendar-tab__day-week" :class="{'calendar-tab__day-month--disabled': isDisabled}">
       {{dayOfWeek}}
@@ -52,11 +52,21 @@ export default {
 .calendar-tab__day {
   color: #fff;
   display: flex;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 2px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-bottom: 10px;
   margin-bottom: -2px;
+  &:Hover {
+    background-color: rgba(255,255,255,.1);
+    border-radius: 6px 6px 0 0;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
 }
 .calendar-tab__day-month--disabled {
   opacity: 0.3;
