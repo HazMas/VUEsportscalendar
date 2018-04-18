@@ -2,8 +2,8 @@
   <div>
     <loader v-if="loading">
     </loader>
-    <div class="ladders" v-else>
-      <router-link tag="div" :to="{name: 'team-view', params: {competition: competition, game: game, teamId: ladder.team.id}}" class="ladder-item" v-for="ladder in ladders.info" :key="ladder.team.id">
+    <div class="ladders " v-else>
+      <router-link tag="div" :to="{name: 'team-view', params: {competition: competition, game: game, teamId: ladder.team.id}}" class="ladder-item" :class="{'ladder-item--active': isActiveTeam(ladder.team.id)}" v-for="ladder in ladders.info" :key="ladder.team.id">
         <span class="ladder-team">
           <span>
             {{ladder.rank}}
@@ -56,7 +56,7 @@ import Loader from '@/components/Loader'
 
 export default {
   name: 'ladders',
-  props: ['competition', 'game'],
+  props: ['competition', 'game', 'activeTeams'],
   created () {
     this.fetchData()
   },
@@ -69,6 +69,13 @@ export default {
     '$route': 'fetchData'
   },
   methods: {
+    isActiveTeam (teamId) {
+      if (this.activeTeams) {
+        return this.activeTeams.filter((activeTeam) => activeTeam === teamId).length > 0
+      }
+
+      return false
+    },
     fetchData () {
       if (this.competition === 'superliga-orange') {
         lvp.getLadders(this.game)

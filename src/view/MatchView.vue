@@ -83,7 +83,7 @@
       <h2 class="match-view__live-title">
         Clasificación
       </h2>
-      <ladders :competition="competition" :game="game"></ladders>
+      <ladders :competition="competition" :game="game" :activeTeams="[match.team_a.id, match.team_b.id]"></ladders>
       <h2 class="match-view__live-title">
         {{match.team_a.name}}
       </h2>

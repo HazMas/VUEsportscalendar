@@ -43,7 +43,7 @@
       <h1>
         Clasificación
       </h1>
-      <ladders :competition="competition" :game="game"></ladders>
+      <ladders :competition="competition" :game="game" :activeTeams="[team.id]"></ladders>
       
     </div>
   </div>
