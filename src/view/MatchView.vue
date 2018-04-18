@@ -331,6 +331,13 @@ export default {
 
 .match-view__back {
   cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    transform: translateX(-2px);
+  }
+  &:active {
+    transform: translateX(-2px) translateY(1px);
+  }
 }
 
 .match-item__team-shield-img--loser {

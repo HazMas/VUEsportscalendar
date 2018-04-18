@@ -43,8 +43,7 @@
       <h1>
         Clasificación
       </h1>
-      <ladders :competition="competition" :game="game" :activeTeams="[team.id]"></ladders>
-      
+      <ladders :competition="competition" :game="game" :activeTeams="[team.id]"></ladders>      
     </div>
   </div>
 </template>
@@ -123,7 +122,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .team-view__head-description {
   background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
 }
@@ -170,6 +169,13 @@ export default {
 
 .team-view__back {
   cursor: pointer;
+  transition: all .3s;
+  &:hover {
+    transform: translateX(-2px);
+  }
+  &:active {
+    transform: translateX(-2px) translateY(1px);
+  }
 }
 
 </style>

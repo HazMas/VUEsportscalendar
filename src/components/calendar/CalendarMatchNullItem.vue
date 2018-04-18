@@ -72,7 +72,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .match-item {
     // display: flex;
     display: grid;
@@ -140,7 +140,7 @@ export default {
   }
   .match-item__team-shield-img {
     height: 76px;
-     -webkit-filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
+    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
   }
   .match-item__result {
     display: flex;

@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .calendar-view {
     display: flex;
     padding:0 6% 0 6%;

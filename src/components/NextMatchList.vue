@@ -6,7 +6,7 @@
       <h1>
         Próximos partidos
       </h1>
-      <match-item v-for="match in matches" :key="match.id" :match="match" class="player-row">
+      <match-item v-for="match in matches" :key="match.id" :match="match">
       </match-item>
     </div>
   </div>
