@@ -157,12 +157,16 @@ function parseSocialData (teamData) {
 }
 
 function parsePlayeresData (playersData) {
-  return playersData.map((playerData) => {
-    return {
-      'name': playerData['firstname'] + ' ' + playerData['lastname'],
-      'image_url': playerData['photo'],
-      'nick': playerData['nickname'],
-      'position': playerData['position']
-    }
-  })
+  return playersData
+    .map((playerData) => {
+      return {
+        'name': playerData['firstname'] + ' ' + playerData['lastname'],
+        'image_url': playerData['photo'],
+        'nick': playerData['nickname'],
+        'position': playerData['position']
+      }
+    })
+    .sort((player1, player2) => {
+      return player1.position.localeCompare(player2.position)
+    })
 }
