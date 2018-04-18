@@ -18,9 +18,9 @@
         </div>
       </div>
       <div class="team-view__competition-info">
-        <div class="team-view__event-competition">
+        <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" tag="div" class="team-view__event-competition">
           <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
-        </div>
+        </router-link>
          <span class="team-view__event-game">
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
@@ -43,7 +43,7 @@
       <h1>
         Clasificación
       </h1>
-      <ladders :competition="competition" :game="game" :activeTeams="[team.id]"></ladders>      
+      <ladders :competition="competition" :game="game" :activeTeams="[team.id]"></ladders>
     </div>
   </div>
 </template>

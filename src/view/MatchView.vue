@@ -47,9 +47,9 @@
         </div>
       </div>
       <div class="match-view__competition-info">
-        <div class="match-view__event-competition">
+        <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" class="match-view__event-competition">
           <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
-        </div>
+        </router-link>
         <span class="match-view__event-game">
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
         </span>
