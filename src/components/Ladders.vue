@@ -115,7 +115,7 @@ export default {
   }
 }
 .ladder-item--active {
-  background-image: linear-gradient(180deg, #19213F 0%, #12152B 45%, #101328 100%);
+box-shadow: inset 5px 0 0 0 #fff;
 }
 .ladder-team {
   display: flex;
