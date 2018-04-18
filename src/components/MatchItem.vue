@@ -81,9 +81,7 @@ export default {
 
 <style lang="scss" scoped>
   .match-item {
-    // display: flex;
     display: grid;
-    // justify-content: space-around;
     grid-template-columns: 1fr 3fr 2fr 3fr;
     grid-template-rows: 100px;
     height: 100px;
@@ -92,6 +90,15 @@ export default {
     box-shadow: 0 2px 10px 0 rgba(0,0,0,0.2);
     border-radius: 6px 0 0 6px;
     cursor: pointer;
+    transition: all .3s;
+    &:Hover {
+      transform: translateY(-2px);
+      background-image: linear-gradient(140deg, #5F7890 0%, #4B5579 50%, #323D62 100%) !important;
+      box-shadow: 0 6px 15px 0 rgba(0, 0, 0, .4) !important;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
   }
   .match-item__event {
     background: #354065;
