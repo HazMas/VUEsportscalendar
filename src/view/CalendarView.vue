@@ -113,18 +113,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .calendar-view {
-    display: flex;
-    padding:0 6% 0 6%;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid rgba(255,255,255,.2);
-  }
-  .calendar-tabs {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
+.calendar-view {
+  display: flex;
+  padding:0 6% 0 6%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.header__logo {
+  max-height: 50px;
+}
+.calendar-tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .month-item {
   font-size: 1.3em;
   padding: 2%;
