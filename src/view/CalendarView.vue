@@ -23,7 +23,8 @@
     <v-date-picker class="calendar-view__date-picker" mode="single" @input="updateDate" :is-inline="true" v-if="showCalendar" :value="selectedDate">
     </v-date-picker>
     <div v-if="areNoMatches" class="no-match-text">
-      No hay partidos 😱
+      <span class="no-match-text__emoji">😱</span>
+      No hay partidos
     </div>
     <loader v-if="isLoading" class="no-match-text"></loader>
     <component :is="selectItem(match)" class="match-item" v-for="match in matches" :key="match.id" :match="match"></component>
@@ -157,7 +158,14 @@ export default {
     }
   }
   .no-match-text {
-    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+  }
+  .no-match-text__emoji {
+    font-size: 4em;
   }
   .calendar-view__selected-date {
     text-align: center;
