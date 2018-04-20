@@ -121,7 +121,7 @@ export default {
   border-bottom: 1px solid rgba(255,255,255,.2);
 }
 .header__logo {
-  max-height: 50px;
+  max-height: 40px;
 }
 .calendar-tabs {
   width: 100%;
