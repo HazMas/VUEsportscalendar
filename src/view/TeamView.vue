@@ -19,7 +19,7 @@
       </div>
       <div class="team-view__competition-info">
         <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" tag="div" class="team-view__event-competition">
-          <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
+          <img class="team-view__competition-img" :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
         </router-link>
          <span class="team-view__event-game">
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
@@ -143,6 +143,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.team-view__competition-img {
+  max-width: 90px;
 }
 .team-view__shield-img {
   width:70%;

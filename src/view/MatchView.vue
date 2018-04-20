@@ -48,7 +48,7 @@
       </div>
       <div class="match-view__competition-info">
         <router-link :to="{name: 'competition-view', params: {competition: competition, game: game}}" class="match-view__event-competition">
-          <img :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
+          <img class="match-view__competition-img" :src="'/static/img/leagues/' + competition + '.png'" :alt="competition">
         </router-link>
         <span class="match-view__event-game">
           <img :src="'/static/img/games/' + game + '.png'" :alt="game">
@@ -258,6 +258,9 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.match-view__competition-img {
+  max-width: 90px;
 }
 .match-view__event-round {
   font-size: 48px;
