@@ -26,6 +26,7 @@
     "v-offline": "^1.0.8",
     "vue": "^2.5.2",
     "vue-add-to-calendar": "^1.0.4",
+    "vue-analytics": "^5.10.2",
     "vue-lazyload": "^1.1.4",
     "vue-loaders": "^2.0.0",
     "vue-meta": "^1.5.0",
