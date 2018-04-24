@@ -4,6 +4,7 @@ import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
 import Raven from 'raven-js'
 import RavenVue from 'raven-js/plugins/vue'
+import VueAnalytics from 'vue-analytics'
 import App from './App'
 import router from './router'
 import store from './store'
@@ -15,6 +16,11 @@ Raven
 
 Vue.config.productionTip = false
 Vue.use(VueLazyload)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-109251415-4',
+  router
+})
 
 /* eslint-disable no-new */
 new Vue({
