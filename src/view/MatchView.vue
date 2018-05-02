@@ -143,7 +143,8 @@ export default {
         'match-view__event-round': true,
         'match-view__event-round--clash': this.match.game === 'clash',
         'match-view__event-round--lol': this.match.game === 'lol',
-        'match-view__event-round--csgo': this.match.game === 'csgo'
+        'match-view__event-round--csgo': this.match.game === 'csgo',
+        'match-view__event-round--cod': this.match.game === 'cod'
       }
     }
   },
@@ -280,6 +281,10 @@ export default {
 
 .match-view__event-round--csgo {
   background-color: #FFAD63;
+}
+
+.match-view__event-round--cod {
+  background-color: #b467cf;
 }
 
 .match-view__event-competition {

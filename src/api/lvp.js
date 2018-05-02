@@ -8,7 +8,8 @@ export default {
     const promises = [
       axios.get(API_BASE + 'lol/temporada/matches'),
       axios.get(API_BASE + 'clash/temporada/matches'),
-      axios.get(API_BASE + 'csgo/temporada/matches')
+      axios.get(API_BASE + 'csgo/temporada/matches'),
+      axios.get(API_BASE + 'cod/temporada/matches')
       // axios.get(API_BASE + 'lol/copa/matches'),
       // axios.get(API_BASE + 'lolsegunda/temporada/matches')
     ]
@@ -29,6 +30,12 @@ export default {
           }),
           ...responses[2].data.map((match) => {
             match.game = 'csgo'
+            match.competition = 'superliga-orange'
+            match.live = this.getLive(match.game)
+            return match
+          }),
+          ...responses[3].data.map((match) => {
+            match.game = 'cod'
             match.competition = 'superliga-orange'
             match.live = this.getLive(match.game)
             return match
@@ -57,6 +64,13 @@ export default {
         {
           'platform': 'twitch',
           'url': 'https://www.twitch.tv/lvpes'
+        }
+      ]
+    } else if (game === 'cod') {
+      return [
+        {
+          'platform': 'twitch',
+          'url': 'https://www.twitch.tv/lvpes2'
         }
       ]
     }

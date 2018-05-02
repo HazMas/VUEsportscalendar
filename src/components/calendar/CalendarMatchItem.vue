@@ -56,7 +56,8 @@ export default {
         'match-item__event': true,
         'match-item__event--clash': this.match.game === 'clash',
         'match-item__event--lol': this.match.game === 'lol',
-        'match-item__event--csgo': this.match.game === 'csgo'
+        'match-item__event--csgo': this.match.game === 'csgo',
+        'match-item__event--cod': this.match.game === 'cod'
       }
     },
     matchItemEventRoundClasses () {
@@ -64,7 +65,8 @@ export default {
         'match-item__event-round': true,
         'match-item__event-round--clash': this.match.game === 'clash',
         'match-item__event-round--lol': this.match.game === 'lol',
-        'match-item__event-round--csgo': this.match.game === 'csgo'
+        'match-item__event-round--csgo': this.match.game === 'csgo',
+        'match-item__event-round--cod': this.match.game === 'cod'
       }
     }
   },
@@ -116,6 +118,9 @@ export default {
   .match-item__event--csgo {
     box-shadow: inset -3px 0 0 0 #FFAD63;
   }
+  .match-item__event--cod {
+    box-shadow: inset -3px 0 0 0 #b467cf;
+  }
   .match-item__event-round {
     position: absolute;
     font-size: 14px;
@@ -135,6 +140,9 @@ export default {
   }
   .match-item__event-round--csgo {
     background-color: #FFAD63;
+  }
+  .match-item__event-round--cod {
+    background-color: #b467cf;
   }
   .match-item__event-competition, .match-item__event-game {
     width: 45px;
