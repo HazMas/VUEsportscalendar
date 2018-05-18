@@ -19,7 +19,10 @@ Vue.use(VueLazyload)
 
 Vue.use(VueAnalytics, {
   id: 'UA-109251415-4',
-  router
+  router,
+  debug: {
+    sendHitTask: process.env.NODE_ENV === 'production'
+  }
 })
 
 /* eslint-disable no-new */
