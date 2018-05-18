@@ -12,7 +12,7 @@
       </detect-network>
     </header>
     <div class="calendar-view">
-      <div class="month-item" @click="showCalendar = !showCalendar">
+      <div class="month-item" @click="changeCalendarVisibility">
         {{month}}
         <span class="icon-select-down"></span>
       </div>
@@ -87,6 +87,10 @@ export default {
     title: 'Calendario'
   },
   methods: {
+    changeCalendarVisibility () {
+      this.$ga.event('click', 'ver calendario', this.showCalendar, 1)
+      this.showCalendar = !this.showCalendar
+    },
     updateDate (date) {
       const payload = {
         'date': date
