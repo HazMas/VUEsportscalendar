@@ -11,11 +11,11 @@
           <h1 class="match-view">
             {{match | startFullDate}}
           </h1>
-          <span>
+          <span @click="sendNotification">
             <add-to-calendar class="match-view__notification" v-if="!isFinished(match)" :title="match.team_a.name + ' vs ' + match.team_b.name" :start="startDate" :end="endDate" :details="'Jornada ' + match.round + '\npowered by E-Sports Calendar'" inline-template>
-                <google-calendar class="match-view__calendar-link">
-                  <span class="icon-bell-line"></span>
-                </google-calendar>
+              <google-calendar class="match-view__calendar-link">
+                <span class="icon-bell-line"></span>
+              </google-calendar>
             </add-to-calendar>
           </span>
         </div>
@@ -153,6 +153,9 @@ export default {
     isFinished,
     isLive,
     isTeamLoser,
+    sendNotification () {
+      this.$ga.event('click', 'notification', this.match.team_a.name + ' vs ' + this.match.team_b.name, 1)
+    },
     fetchData () {
       if (this.competition === 'superliga-orange') {
         lvp.getMatch(this.game, this.matchId)
