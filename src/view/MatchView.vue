@@ -154,7 +154,7 @@ export default {
     isLive,
     isTeamLoser,
     sendNotification () {
-      this.$ga.event('click', 'notification', this.match.team_a.name + ' vs ' + this.match.team_b.name, 1)
+      this.$ga.event('notification', 'crear', this.match.team_a.name + ' vs ' + this.match.team_b.name, 1)
     },
     fetchData () {
       if (this.competition === 'superliga-orange') {

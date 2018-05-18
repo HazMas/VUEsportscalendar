@@ -88,8 +88,8 @@ export default {
   },
   methods: {
     changeCalendarVisibility () {
-      this.$ga.event('click', 'ver calendario', this.showCalendar, 1)
       this.showCalendar = !this.showCalendar
+      this.$ga.event('ver calendario', this.showCalendar ? 'mostrar' : 'ocultar', this.showCalendar, 1)
     },
     updateDate (date) {
       const payload = {
