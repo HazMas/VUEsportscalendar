@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a class="link-feedback" href="https://twitter.com/intent/tweet?text=%C2%A1Aqu%C3%AD%20ten%C3%A9is%20mi%20feedback%20@E_SportsApp!&related=E_SportsApp">
+    <a class="link-feedback" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fesportscalendar.app&related=E_SportsApp&text=Gracias%20a%20@E_SportsApp%20no%20me%20pierdo%20ning%C3%BAn%20partido">
       <img class="feedback-contact-icon" src="@/assets/img/chat.svg" alt="feedback contact">
       deposite aquí su feedback, gracias
     </a>
