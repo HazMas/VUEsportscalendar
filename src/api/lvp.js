@@ -1,7 +1,7 @@
 import axios from 'axios'
 import moment from 'moment'
 
-const API_BASE = 'https://esportscalendar.herokuapp.com/superliga/'
+const API_BASE = 'https://us-central1-e-sports-info.cloudfunctions.net/lvp/superliga/'
 
 export default {
   getMatches () {

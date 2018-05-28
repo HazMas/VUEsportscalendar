@@ -8,10 +8,6 @@
     ],
     "rewrites": [
       {
-        "source": "/api/lvp", 
-        "function": "lvp"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }
