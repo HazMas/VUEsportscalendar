@@ -1,8 +1,6 @@
 <template>
   <div>
-    <loader v-if="loading">
-    </loader>
-    <div v-else>
+    <div>
       <div class="race-view__head-description">
         <div class="race-view__header">
           <div @click="$router.back()" class="race-view__back">
@@ -80,18 +78,6 @@
           </div>
         </a>
       </div>
-      <h2 class="race-view__live-title">
-        Clasificación
-      </h2>
-      <ladders :competition="competition" :game="game" :activeTeams="[race.team_a.id, race.team_b.id]"></ladders>
-      <h2 class="race-view__live-title">
-        {{race.team_a.name}}
-      </h2>
-      <players :competition="competition" :game="game" :teamData="race.team_a"></players>
-      <h2 class="race-view__live-title">
-        {{race.team_b.name}}
-      </h2>
-      <players :competition="competition" :game="game" :teamData="race.team_b"></players>
     </div>
   </div>
 </template>
@@ -101,14 +87,11 @@ import moment from 'moment'
 import AddToCalendar from 'vue-add-to-calendar'
 import VueCountdown from '@xkeshi/vue-countdown'
 
-import lvp from '@/api/lvp'
-import esl from '@/api/esl'
-
 import Loader from '@/components/Loader'
 import Ladders from '@/components/Ladders'
 import Players from '@/components/Players'
 
-import {isScheduled, isFinished, isLive, startTime, startFullDate, isTeamLoser} from '@/helpers/raceHelpers'
+import {isScheduled, isFinished, isLive, startTime, startFullDate, isTeamLoser} from '@/helpers/MatchHelpers'
 
 export default {
   name: 'race-view',
@@ -124,8 +107,21 @@ export default {
   data () {
     return {
       title: 'cargando...',
-      loading: true,
-      race: undefined
+      loading: false,
+      race: {
+        round: 1,
+        circuit: 'span',
+        game: 'gran-turismo',
+        competition: 'sce',
+        id: 1,
+        live: [
+          {
+            'platform': 'youtube',
+            'url': 'https://www.youtube.com/channel/UCrSBYzKfhlN0tXXZRyEaFvQ'
+          }
+        ],
+        start_date: new Date()
+      }
     }
   },
   computed: {
@@ -154,24 +150,9 @@ export default {
     isLive,
     isTeamLoser,
     sendNotification () {
-      this.$ga.event('notification', 'crear', this.race.team_a.name + ' vs ' + this.race.team_b.name, 1)
+      // this.$ga.event('notification', 'crear', this.race.team_a.name + ' vs ' + this.race.team_b.name, 1)
     },
     fetchData () {
-      if (this.competition === 'superliga-orange') {
-        lvp.getrace(this.game, this.raceId)
-          .then((race) => {
-            this.race = race
-            this.loading = false
-            this.title = race.team_a.name + ' vs ' + this.race.team_b.name
-          })
-      } else if (this.competition === 'esl-masters') {
-        esl.getrace(this.game, this.raceId)
-          .then((race) => {
-            this.race = race
-            this.loading = false
-            this.title = race.team_a.name + ' vs ' + this.race.team_b.name
-          })
-      }
     }
   },
   watch: {

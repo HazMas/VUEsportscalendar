@@ -44,6 +44,7 @@ import moment from 'moment'
 import { FILTER_MATCHES } from '@/store/mutation-types'
 import CalendarMatchItem from '@/components/calendar/CalendarMatchItem'
 import CalendarMatchNullItem from '@/components/calendar/CalendarMatchNullItem'
+import CalendarRaceItem from '@/components/calendar/CalendarRaceItem'
 import CalendarTab from '@/components/calendar/CalendarTab'
 import Loader from '@/components/Loader'
 
@@ -79,6 +80,7 @@ export default {
   components: {
     CalendarMatchItem,
     CalendarMatchNullItem,
+    CalendarRaceItem,
     CalendarTab,
     detectNetwork,
     Loader
@@ -101,6 +103,9 @@ export default {
     },
 
     selectItem (match) {
+      if (match.game === 'gran-turismo') {
+        return 'calendar-race-item'
+      }
       if (!match.team_a || !match.team_b) {
         return 'calendar-match-null-item'
       } else {
