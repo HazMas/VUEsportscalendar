@@ -1,6 +1,27 @@
 <template>
-  <router-link tag="div" :to="{ name: 'race-view', params: { competition: match.competition, game: match.game, matchId: match.id }}" class="match-item">
-    test
+  <router-link tag="div" :to="{ name: 'race-view', params: { competition: match.competition, game: match.game, matchId: match.id }}" class="race-item">
+     <div class="race-item__event race-item__event--copa-apertura">
+      <span class="race-item__event-round race-item__event-round--copa-apertura">
+        R{{match.round}}
+      </span>
+      <span class="race-item__event-competition">
+        <img src='/static/img/leagues/copa-apertura.png'>
+      </span>
+      <span class="race-item__event-game">
+        <img src='/static/img/games/granturismo.png'>
+      </span>
+    </div>
+    <div class="race-item__circuit-description">
+      <div class="race-item__circuit-name">
+        <span>Nurburgring</span>
+      </div>
+      <div class="race-item__hour">
+        03:45
+      </div>
+    </div>
+    <div class="race-item__circuit-path">
+      <img src='/static/img/paths/nurburgring.png'>
+    </div>
   </router-link>
 </template>
 
@@ -11,22 +32,16 @@ export default {
   name: 'CalendarRaceItem',
   props: ['match'],
   computed: {
-    matchItemEventClasses () {
+    raceItemEventClasses () {
       return {
-        'match-item__event': true,
-        'match-item__event--clash': this.match.game === 'clash',
-        'match-item__event--lol': this.match.game === 'lol',
-        'match-item__event--csgo': this.match.game === 'csgo',
-        'match-item__event--cod': this.match.game === 'cod'
+        'race-item__event': true,
+        'race-item__event--clash': this.race.game === 'granturismo'
       }
     },
-    matchItemEventRoundClasses () {
+    raceItemEventRoundClasses () {
       return {
-        'match-item__event-round': true,
-        'match-item__event-round--clash': this.match.game === 'clash',
-        'match-item__event-round--lol': this.match.game === 'lol',
-        'match-item__event-round--csgo': this.match.game === 'csgo',
-        'match-item__event-round--cod': this.match.game === 'cod'
+        'race-item__event-round': true,
+        'race-item__event-round--clash': this.race.game === 'granturismo'
       }
     }
   },
@@ -43,11 +58,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .match-item {
+  .race-item {
     // display: flex;
     display: grid;
     // justify-content: space-around;
-    grid-template-columns: 1fr 3fr 2fr 3fr;
+    grid-template-columns: 1fr 4fr 4fr;
     grid-template-rows: 100px;
     height: 100px;
     margin-top: 25px;
@@ -56,7 +71,7 @@ export default {
     border-radius: 6px 0 0 6px;
     cursor: pointer;
   }
-  .match-item__event {
+  .race-item__event {
     background: #354065;
     position: relative;
     display: flex;
@@ -64,24 +79,16 @@ export default {
     align-items: center;
     flex-direction: column;
     color: transparent;
+    min-width: 50px;
   }
-  .match-item__live {
+  .race-item__live {
     display:flex;
     align-items: center;
   }
-  .match-item__event--clash {
-    box-shadow: inset -3px 0 0 0 #5185E0;
+  .race-item__event--copa-apertura {
+    box-shadow: inset -3px 0 0 0 #E20A17;
   }
-  .match-item__event--lol {
-    box-shadow: inset -3px 0 0 0 #05D4BE;
-  }
-  .match-item__event--csgo {
-    box-shadow: inset -3px 0 0 0 #FFAD63;
-  }
-  .match-item__event--cod {
-    box-shadow: inset -3px 0 0 0 #b467cf;
-  }
-  .match-item__event-round {
+  .race-item__event-round {
     position: absolute;
     font-size: 14px;
     font-weight: bold;
@@ -92,58 +99,42 @@ export default {
     top:-5px;
     white-space: nowrap;
   }
-  .match-item__event-round--clash {
-    background-color: #5185E0;
+  .race-item__event-round--copa-apertura {
+    background-color: #E20A17;
   }
-  .match-item__event-round--lol {
-    background-color: #05D4BE;
-  }
-  .match-item__event-round--csgo {
-    background-color: #FFAD63;
-  }
-  .match-item__event-round--cod {
-    background-color: #b467cf;
-  }
-  .match-item__event-competition, .match-item__event-game {
-    width: 45px;
-    height: 45px;
+  .race-item__event-competition, .race-item__event-game {
+    width: 80%;
+    max-width: 50px;
+    height: auto;
     background-size: cover;
     display: inline-block;
   }
-  .match-item__event-competition img, .match-item__event-game img {
-    height: 45px;
-    width: 45px;
-  }
-  .match-item__team-shield {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .match-item__team-shield-img {
-    height: 76px;
-    filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.5));
-  }
-  .match-item__scoreboard {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+  .race-item__event-competition img, .race-item__event-game img {
+    height: auto;
+    max-width: 50px;
+    width: 80%;
   }
   .dot-live{
     padding-right: 5px;
   }
-  .match-item__result {
+  .race-item__circuit-description {
+    padding-left: 10%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     color: #fff;
-    font-size: 2em;
     white-space: nowrap;
   }
-
-  .match-item__team-shield-img--loser {
-    filter: grayscale(100%) brightness(.8);
-
+  .race-item__circuit-path {
+    padding-right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .race-item__circuit-name {
+    font-size: 1.7em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 </style>
 
