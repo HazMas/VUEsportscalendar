@@ -2,17 +2,16 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueLazyload from 'vue-lazyload'
-import Raven from 'raven-js'
-import RavenVue from 'raven-js/plugins/vue'
 import VueAnalytics from 'vue-analytics'
+import bugsnag from 'bugsnag-js'
+import bugsnagVue from 'bugsnag-vue'
 import App from './App'
 import router from './router'
 import store from './store'
 
-Raven
-  .config('https://6cd7675eb707419da77b95b4a380b5c6@sentry.io/840495')
-  .addPlugin(RavenVue, Vue)
-  .install()
+// Initialize Bugsnag
+const bugsnagClient = bugsnag('aa27e83d89b844c2dd4a0decb911845f')
+bugsnagClient.use(bugsnagVue(Vue))
 
 Vue.config.productionTip = false
 Vue.use(VueLazyload)
