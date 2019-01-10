@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import moment from 'moment'
 
 import {UPDATE_MATCHES, FILTER_MATCHES, UPDATE_LOADING} from './mutation-types'
-import lvp from '../api/lvp'
 import esl from '../api/esl'
 
 Vue.use(Vuex)
@@ -56,13 +55,11 @@ export default new Vuex.Store({
   actions: {
     getMatches ({commit, state}, matches) {
       Promise.all([
-        lvp.getMatches(),
         esl.getMatches()
       ]).then((responses) => {
         const payload = {
           'matches': [
-            ...responses[0],
-            ...responses[1]
+            ...responses[0]
           ]
         }
         commit(UPDATE_MATCHES, payload)
